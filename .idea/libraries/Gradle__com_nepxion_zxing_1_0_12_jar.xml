@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.nepxion:zxing:1.0.12@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nepxion/zxing/1.0.12/f9dcdb4fbce4b79fa6402d9e6607c3f0acb7e9ca/zxing-1.0.12.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nepxion/zxing/1.0.12/70b290c0e981e3ca3fcfca96db7c4cbd5632c550/zxing-1.0.12-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nepxion/zxing/1.0.12/1257ce70e6e6aeb2194f27d7cf89361304c4f71a/zxing-1.0.12-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

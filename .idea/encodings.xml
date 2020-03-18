@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/loader/CustomerEditLoader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/loader/CustomerListLoader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/loader/ExpressListLoader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/loader/ExpressLoader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/loader/RegionListLoader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/loader/TransPackageLoader.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/misc/model/TransPackage.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/net/HttpAsyncTask.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/net/HttpResponseParam.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/net/JsonUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/domain/ExpressEditActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/domain/ExpressListAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/domain/ExpressListFragment.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/main/ExTraceApplication.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/main/MainActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/main/MainFragment.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/main/SettingsActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/misc/CustomerEditActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/misc/CustomerListActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/extrace/ui/misc/RegionListActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/zxing/util/CaptureActivity.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

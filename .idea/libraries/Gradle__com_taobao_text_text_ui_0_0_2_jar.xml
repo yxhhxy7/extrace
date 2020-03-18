@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.taobao.text:text-ui:0.0.2@jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.taobao.text/text-ui/0.0.2/f62918a7315c5fcd4d48a82b142d3022c021b7d4/text-ui-0.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.taobao.text/text-ui/0.0.2/8d52400fc2cb7c0fc4cddb71b9f909e1a86e2211/text-ui-0.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.taobao.text/text-ui/0.0.2/c65c3daef946696f9c957a5369d2b5e1fea8b9cb/text-ui-0.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
