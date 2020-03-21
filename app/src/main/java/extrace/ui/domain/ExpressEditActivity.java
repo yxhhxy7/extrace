@@ -418,14 +418,14 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			mRcvNameView = (TextView) rootView.findViewById(R.id.expressRcvName);
 			mRcvTelCodeView = (TextView) rootView.findViewById(R.id.expressRcvTel);
 			mRcvAddrView = (TextView) rootView.findViewById(R.id.expressRcvAddr);
-			mRcvDptView = (TextView) rootView.findViewById(R.id.expressRcvDpt);
-			mRcvRegionView = (TextView) rootView.findViewById(R.id.expressRcvRegion);	
+			//mRcvDptView = (TextView) rootView.findViewById(R.id.expressRcvDpt);
+			//mRcvRegionView = (TextView) rootView.findViewById(R.id.expressRcvRegion);
 
 			mSndNameView = (TextView) rootView.findViewById(R.id.expressSndName);
 			mSndTelCodeView = (TextView) rootView.findViewById(R.id.expressSndTel);
 			mSndAddrView = (TextView) rootView.findViewById(R.id.expressSndAddr);
-			mSndDptView = (TextView) rootView.findViewById(R.id.expressSndDpt);
-			mSndRegionView = (TextView) rootView.findViewById(R.id.expressSndRegion);	
+			//mSndDptView = (TextView) rootView.findViewById(R.id.expressSndDpt);
+			//mSndRegionView = (TextView) rootView.findViewById(R.id.expressSndRegion);
 
 			mRcvTimeView = (TextView) rootView.findViewById(R.id.expressAccTime);
 			mSndTimeView = (TextView) rootView.findViewById(R.id.expressDlvTime);
