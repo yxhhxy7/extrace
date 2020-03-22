@@ -90,6 +90,29 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保险金(元)："
+            android:textColor="#000000"
+            android:textSize="16dip" />
+
+        <EditText
+            android:id="@+id/ExpressSheetIsuFee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line4"
+        android:orientation="horizontal">
+
+        <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
