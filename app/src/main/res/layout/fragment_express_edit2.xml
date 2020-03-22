@@ -42,7 +42,7 @@
         android:paddingTop="3px">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="重量(千克)："
