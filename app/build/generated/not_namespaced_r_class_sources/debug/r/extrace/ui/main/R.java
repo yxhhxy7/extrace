@@ -2630,11 +2630,11 @@ public final class R {
     public static final int textSpacerNoTitle=0x7f0800b7;
     public static final int textView1=0x7f0800b8;
     public static final int textView10=0x7f0800b9;
-    public static final int textView2=0x7f0800ba;
-    public static final int textView3=0x7f0800bb;
-    public static final int textView4=0x7f0800bc;
-    public static final int textView6=0x7f0800bd;
-    public static final int textView7=0x7f0800be;
+    public static final int textView11=0x7f0800ba;
+    public static final int textView2=0x7f0800bb;
+    public static final int textView3=0x7f0800bc;
+    public static final int textView4=0x7f0800bd;
+    public static final int textView6=0x7f0800be;
     public static final int textView8=0x7f0800bf;
     public static final int textView9=0x7f0800c0;
     public static final int time=0x7f0800c1;

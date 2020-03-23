@@ -925,11 +925,11 @@ int id textSpacerNoButtons 0x7f0800b6
 int id textSpacerNoTitle 0x7f0800b7
 int id textView1 0x7f0800b8
 int id textView10 0x7f0800b9
-int id textView2 0x7f0800ba
-int id textView3 0x7f0800bb
-int id textView4 0x7f0800bc
-int id textView6 0x7f0800bd
-int id textView7 0x7f0800be
+int id textView11 0x7f0800ba
+int id textView2 0x7f0800bb
+int id textView3 0x7f0800bc
+int id textView4 0x7f0800bd
+int id textView6 0x7f0800be
 int id textView8 0x7f0800bf
 int id textView9 0x7f0800c0
 int id time 0x7f0800c1

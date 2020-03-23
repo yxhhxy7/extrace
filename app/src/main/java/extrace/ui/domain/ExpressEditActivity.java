@@ -194,8 +194,15 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 	@Override
 	public void notifyDataSetChanged() {
 		if(baseFragment != null){
-			baseFragment.RefreshUI(mItem);			
+			baseFragment.RefreshUI(mItem);
 		}
+
+		if(externFragment !=null){
+			externFragment.RefreshUI(mItem);
+		}
+
+
+
 		MenuDisplay(mItem.getStatus());
 	}
 
@@ -505,16 +512,16 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				mRcvTelCodeView.setText(es.getRecever().getTelCode());
 				mRcvNameView.setTag(es.getRecever());
 				mRcvAddrView.setText(es.getRecever().getAddress());
-				mRcvDptView.setText(es.getRecever().getDepartment());
-				mRcvRegionView.setText(es.getRecever().getRegionString());
+				//mRcvDptView.setText(es.getRecever().getDepartment());
+				//mRcvRegionView.setText(es.getRecever().getRegionString());
 			}
 			else{
 				mRcvNameView.setText(null);
 				mRcvTelCodeView.setText(null);
 				mRcvNameView.setTag(null);
 				mRcvAddrView.setText(null);
-				mRcvDptView.setText(null);
-				mRcvRegionView.setText(null);
+				//mRcvDptView.setText(null);
+				//mRcvRegionView.setText(null);
 			}
 		}
 		
@@ -524,16 +531,16 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				mSndTelCodeView.setText(es.getSender().getTelCode());
 				mSndNameView.setTag(es.getSender());
 				mSndAddrView.setText(es.getSender().getAddress());
-				mSndDptView.setText(es.getSender().getDepartment());
-				mSndRegionView.setText(es.getSender().getRegionString());
+				//mSndDptView.setText(es.getSender().getDepartment());
+				//mSndRegionView.setText(es.getSender().getRegionString());
 			}
 			else{
 				mSndNameView.setText(null);
 				mSndTelCodeView.setText(null);
 				mSndNameView.setTag(null);
 				mSndAddrView.setText(null);
-				mSndDptView.setText(null);
-				mSndRegionView.setText(null);
+				//mSndDptView.setText(null);
+				//mSndRegionView.setText(null);
 			}
 		}
 	}
@@ -543,6 +550,14 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 		/**
 		 * Returns a new instance of this fragment for the given section number.
 		 */
+
+		private TextView mTypeView;
+		private TextView mWeightView;
+		private TextView mTransFeeView;
+		private TextView mStatusView;
+		private TextView mIsuFeeView;
+
+
 		public static ExpressEditFragment2 newInstance() {
 			ExpressEditFragment2 fragment = new ExpressEditFragment2();
 //			Bundle args = new Bundle();
@@ -556,15 +571,54 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
+								 Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_express_edit2,
 					container, false);
 //			TextView textView = (TextView) rootView
 //					.findViewById(R.id.section_label);
 //			textView.setText(Integer.toString(getArguments().getInt(
 //					ARG_SECTION_NUMBER)));
+			mTypeView = rootView.findViewById(R.id.ExpressSheetType);
+			mWeightView = rootView.findViewById(R.id.ExpressSheetWeught);
+			mTransFeeView = rootView.findViewById(R.id.ExpressSheetTransFee);
+			mIsuFeeView = rootView.findViewById(R.id.ExpressSheetIsuFee);
+			mStatusView = rootView.findViewById(R.id.ExpressSheetStatus);
 			return rootView;
 		}
+
+
+		void disPlayExetrn(ExpressSheet es) {
+			String Type = es.getType() + "";
+			mTypeView.setText(Type);
+			String weight = es.getWeight() + "";
+			mWeightView.setText(weight);
+			String TransFee = es.getTranFee() + "";
+			mTransFeeView.setText(TransFee);
+			//String IsuFee = es.getInsuFee()+"";
+			//mIsuFeeView.setText(IsuFee);
+		}
+
+
+		void RefreshUI(ExpressSheet es) {
+			disPlayExetrn(es);
+
+
+			String stText = "";
+			switch (es.getStatus()) {
+				case ExpressSheet.STATUS.STATUS_CREATED:
+					stText = "正在创建";
+					break;
+				case ExpressSheet.STATUS.STATUS_TRANSPORT:
+					stText = "运送途中";
+					break;
+				case ExpressSheet.STATUS.STATUS_DELIVERIED:
+					stText = "已交付";
+					break;
+			}
+			mStatusView.setText(stText);
+
+		}
+
 	}
 
 
