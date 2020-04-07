@@ -1,0 +1,437 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="extrace.ui.domain.ExpressEditActivity$ExpressEditFragment1" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="15dip"
+        android:paddingTop="8dip"
+        android:paddingRight="15dip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="运单:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <TextView
+                android:id="@+id/CreateExpressId"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20dip" />
+
+            <ImageView
+                android:id="@+id/create_action_ex_capture_icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/find_more_friend_photograph_icon" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip"
+
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="收件人:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <EditText
+                android:id="@+id/CreateExpressRcvName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="16dip"
+                android:textStyle="bold"
+                android:background="@null"/>
+
+            <ImageView
+                android:id="@+id/create_action_ex_rcv_icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/find_more_friend_photograph_icon" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="电话号码:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <EditText
+                android:id="@+id/CreateExpressRcvTel"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="@color/black"
+                android:textSize="16dip"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:background="@null"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="行政区:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <EditText
+                android:id="@+id/CreateExpressRcvAddr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:textColor="@color/black"
+                android:textSize="15dip"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/find_receiver_addr"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/find_more_friend_photograph_icon" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="详细住址:"
+                android:textColor="@color/black"
+                android:textSize="16dip"  />
+
+            <EditText
+                android:id="@+id/CreateRcvExpressDept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:textColor="@color/black"
+                android:textSize="15dip"
+                android:textStyle="bold"  />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="发件人:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <EditText
+                android:id="@+id/CreateExpressSndName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="16dip"
+                android:textStyle="bold"
+                android:background="@null"/>
+
+            <ImageView
+                android:id="@+id/create_action_ex_snd_icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/find_more_friend_photograph_icon" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="电话号码:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <EditText
+                android:id="@+id/CreateExpressSndTel"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textColor="@color/black"
+                android:textSize="16dip"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:background="@null"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="行政区:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <EditText
+                android:id="@+id/CreateExpressSndAddr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:textColor="@color/black"
+                android:textSize="16dip"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/find_sender_addr"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/find_more_friend_photograph_icon" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="详细住址:"
+                android:textColor="@color/black"
+                android:textSize="16dip"  />
+
+            <EditText
+                android:id="@+id/CreateSndExpressDept"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="2"
+                android:textColor="@color/black"
+                android:textSize="15dip"
+                android:textStyle="bold"  />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="收件时间:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <TextView
+                android:id="@+id/CreateExpressAccTime"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20dip" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="交付时间:"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <TextView
+                android:id="@+id/CreateExpressDlvTime"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20dip" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:visibility="visible"
+        tools:visibility="visible">
+
+        <Button
+            android:id="@+id/create_btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_btn1"
+            android:text="提交"
+            android:textColor="#FFFFFF"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>

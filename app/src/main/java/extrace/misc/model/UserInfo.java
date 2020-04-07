@@ -1,15 +1,18 @@
 package extrace.misc.model;
+
+import com.google.gson.annotations.Expose;
+
 public class UserInfo{
-	private int UID;
-	private String PWD;
-	private String name;
-	private int URull;
-	private String telCode;
-	private int status;
-	private String dptID;
-	private String receivePackageID;
-	private String delivePackageID;
-	private String transPackageID;
+	@Expose private int UID;
+	@Expose private String PWD;
+	@Expose private String name;
+	@Expose private int URull;
+	@Expose private String telCode;
+	@Expose private int status;
+	@Expose private String dptID;
+	@Expose private String receivePackageID;
+	@Expose private String delivePackageID;
+	@Expose private String transPackageID;
 
 	public int getUID() {
 		return UID;

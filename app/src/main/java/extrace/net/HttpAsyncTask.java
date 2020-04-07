@@ -104,7 +104,7 @@ public abstract class HttpAsyncTask extends
 				postMethod.setHeader("User-Agent", USER_AGENT);
 				postMethod.addHeader("Content-Type", "application/json");
 				postMethod.setHeader("Accept", "application/json");
-				System.out.println(str_json); // ============================================================
+				System.out.println("^&^&^&^"+str_json); // ============================================================
 				StringEntity entity = new StringEntity(str_json, "UTF-8");
 				entity.setContentType("application/json");
 				postMethod.setEntity(entity);

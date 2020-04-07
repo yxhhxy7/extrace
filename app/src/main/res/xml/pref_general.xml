@@ -1,7 +1,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <EditTextPreference
         android:capitalize="words"
-        android:defaultValue="http://192.168.7.100:8080/TestCxfHibernate"
+        android:defaultValue="http://39.105.163.115:80/TestCxfHibernate"
         android:inputType="textCapWords"
         android:key="ServerUrl"
         android:maxLines="1"

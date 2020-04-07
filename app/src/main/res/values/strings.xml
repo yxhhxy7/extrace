@@ -150,5 +150,17 @@
     <string name="title_activity_express_edit">快件信息</string>
     <string name="title_ex_edit1">基本信息</string>
     <string name="title_ex_edit2">扩展信息</string>
-    
+    <string name="title_activity_create_express_sheet">快件揽收</string>
+    <string name="login_username_hint">请输入用户名&#8230;</string>
+    <string name="login_telephone_hint">请输入手机号&#8230;</string>
+    <string name="login_password_hint">请输入密码&#8230;</string>
+    <string name="login_code_hint">请输入验证码&#8230;</string>
+    <string name="login_telephone_code_hint">请输入手机验证码&#8230;</string>
+    <string name="login">登录</string>
+    <string name="login_email_hint">请在此确认密码&#8230;</string>
+    <string name="login_account">账号 </string>
+    <string name="login_pwd">密码 </string>
+    <string name="login_email">确认密码 </string>
+    <string name="register">注册</string>
+    <string name="telephone">手机号</string>
 </resources>

@@ -11,6 +11,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath "com.mob.sdk:MobSDK:2018.0319.1724"
     }
 }
 

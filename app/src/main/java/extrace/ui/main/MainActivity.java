@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         case R.id.action_login:
             return true;
         case R.id.action_logout:
+            Intent intentLogout = new Intent();
+            intentLogout.setClass(getApplicationContext(), LoginActivity.class);
+            startActivity(intentLogout);
             return true;
         case R.id.action_settings:
     		Intent intent = new Intent();

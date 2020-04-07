@@ -13,13 +13,18 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import extrace.loader.ExpressLoader;
 import extrace.misc.model.CustomerInfo;
 import extrace.misc.model.ExpressSheet;
@@ -189,6 +194,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 	@Override
 	public void setData(ExpressSheet data) {
 		mItem = data;
+		Log.d("!!!!!", mItem.toString());
 	}
 
 	@Override
@@ -428,6 +434,8 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			//mRcvDptView = (TextView) rootView.findViewById(R.id.expressRcvDpt);
 			//mRcvRegionView = (TextView) rootView.findViewById(R.id.expressRcvRegion);
 
+			mRcvDptView = (TextView) rootView.findViewById(R.id.RcvExpressDept);
+			mSndDptView = (TextView) rootView.findViewById(R.id.SndExpressDept);
 			mSndNameView = (TextView) rootView.findViewById(R.id.expressSndName);
 			mSndTelCodeView = (TextView) rootView.findViewById(R.id.expressSndTel);
 			mSndAddrView = (TextView) rootView.findViewById(R.id.expressSndAddr);
@@ -479,6 +487,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			else
 				mSndTimeView.setText(null);
 
+
 			String stText = "";
 			switch(es.getStatus()){
 			case ExpressSheet.STATUS.STATUS_CREATED:
@@ -512,6 +521,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				mRcvTelCodeView.setText(es.getRecever().getTelCode());
 				mRcvNameView.setTag(es.getRecever());
 				mRcvAddrView.setText(es.getRecever().getAddress());
+				mRcvDptView.setText(es.getRecever().getDepartment());
 				//mRcvDptView.setText(es.getRecever().getDepartment());
 				//mRcvRegionView.setText(es.getRecever().getRegionString());
 			}
@@ -520,6 +530,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				mRcvTelCodeView.setText(null);
 				mRcvNameView.setTag(null);
 				mRcvAddrView.setText(null);
+				mRcvDptView.setText(null);
 				//mRcvDptView.setText(null);
 				//mRcvRegionView.setText(null);
 			}
@@ -531,6 +542,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				mSndTelCodeView.setText(es.getSender().getTelCode());
 				mSndNameView.setTag(es.getSender());
 				mSndAddrView.setText(es.getSender().getAddress());
+				mSndDptView.setText(es.getSender().getDepartment());
 				//mSndDptView.setText(es.getSender().getDepartment());
 				//mSndRegionView.setText(es.getSender().getRegionString());
 			}
@@ -539,6 +551,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				mSndTelCodeView.setText(null);
 				mSndNameView.setTag(null);
 				mSndAddrView.setText(null);
+				mSndDptView.setText(null);
 				//mSndDptView.setText(null);
 				//mSndRegionView.setText(null);
 			}
@@ -589,13 +602,17 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 
 		void disPlayExetrn(ExpressSheet es) {
 			String Type = es.getType() + "";
-			mTypeView.setText(Type);
+			if(Type.equals("0")){
+				mTypeView.setText("普通快件");
+			}else if(Type.equals("1")){
+				mTypeView.setText("加急快件");
+			}
 			String weight = es.getWeight() + "";
 			mWeightView.setText(weight);
 			String TransFee = es.getTranFee() + "";
 			mTransFeeView.setText(TransFee);
-			//String IsuFee = es.getInsuFee()+"";
-			//mIsuFeeView.setText(IsuFee);
+			String IsuFee = es.getInsuFee()+"";
+			mIsuFeeView.setText(IsuFee);
 		}
 
 

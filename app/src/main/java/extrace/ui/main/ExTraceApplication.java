@@ -10,7 +10,7 @@ public class ExTraceApplication extends Application {
     SharedPreferences settings;// = PreferenceManager.getDefaultSharedPreferences(this.getApplicationContext());
 //	String mServerUrl;
 //	String mMiscService,mDomainService;
-    UserInfo userInfo;
+    private static UserInfo userInfo;
     
     public String getServerUrl() {  
         return settings.getString("ServerUrl", "");  
@@ -22,8 +22,12 @@ public class ExTraceApplication extends Application {
         return getServerUrl() + settings.getString("DomainService", ""); 
     }  
   
-    public UserInfo getLoginUser(){
+    public static UserInfo getLoginUser(){
     	return userInfo;
+    }
+
+    public static void setUserInfo(UserInfo ui){
+        userInfo = ui;
     }
     
     @Override  

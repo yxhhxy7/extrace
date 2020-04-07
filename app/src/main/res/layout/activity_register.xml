@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#f0f2f5"
+              android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        app:srcCompat="@drawable/login_logo" />
+
+    <LinearLayout style="@style/Register_Input">
+
+        <TextView
+            style="@style/Coder.TextView.Black"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/login_account"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/register_username"
+            style="@style/Register_Edit"
+            android:hint="@string/login_username_hint"/>
+    </LinearLayout>
+    <LinearLayout style="@style/Register_Input">
+
+        <TextView
+            style="@style/Coder.TextView.Black"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/telephone"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/register_telephone"
+            style="@style/Register_Edit"
+            android:hint="@string/login_telephone_hint"/>
+    </LinearLayout>
+
+    <LinearLayout style="@style/Register_Input">
+
+
+        <EditText
+            android:id="@+id/register_captcha"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_weight="4"
+            android:background="@color/transparent"
+            android:hint="@string/login_telephone_code_hint"/>
+
+        <Button
+            android:id="@+id/register_captcha_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:text="获取验证码" />
+
+    </LinearLayout>
+
+    <LinearLayout style="@style/Register_Input">
+
+        <TextView
+            style="@style/Coder.TextView.Black"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/login_pwd"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/register_password"
+            style="@style/Register_Edit"
+            android:hint="@string/login_password_hint"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Register_Input">
+
+        <TextView
+            style="@style/Coder.TextView.Black"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/login_email"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/register_confirm_password"
+            style="@style/Register_Edit"
+            android:hint="@string/login_email_hint"
+            android:inputType="textPassword"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/Register_Input">
+
+        <CheckBox
+            android:id="@+id/register_checkBox"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/Coder.TextView.Black"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="我已阅读并同意 隐私政策 和 服务条款"
+            android:textSize="17dp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/base_action_bar_height"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:background="@drawable/btn_login_selector"
+        android:clickable="true"
+        android:onClick="onClick"
+        android:text="@string/register"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/text_size_large" />
+
+</LinearLayout>

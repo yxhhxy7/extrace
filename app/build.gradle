@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 26
@@ -9,7 +10,6 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
-
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_8
             targetCompatibility JavaVersion.VERSION_1_8
@@ -22,6 +22,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+}
+MobSDK {
+    appKey "2eac8d3687ec2"
+    appSecret "eebb2d575b29525b75128519ab1af066"
+    SMSSDK {}
 }
 
 dependencies {
