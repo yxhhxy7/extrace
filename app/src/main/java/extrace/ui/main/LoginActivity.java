@@ -19,8 +19,9 @@ import extrace.loader.LoginAndRegisterLoader;
 import extrace.misc.model.UserInfo;
 import extrace.net.CodeUtils;
 import extrace.net.IDataAdapter;
+import extrace.net.LoginDataAdapter;
 
-public class LoginActivity extends AppCompatActivity implements IDataAdapter<String> {
+public class LoginActivity extends AppCompatActivity implements LoginDataAdapter<String> {
 
     private Integer status = -1;
     private Button loginBtn;
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements IDataAdapter<Str
             String Acc = sp.getString("rememberAcc",null);
             if(Acc.equals("1")){
                 rememberAcc.setChecked(true);
-                username.setText(sp.getString("account", null));
+                username.setText(sp.getString("telCode", null));
             }
         }
 
@@ -70,7 +71,7 @@ public class LoginActivity extends AppCompatActivity implements IDataAdapter<Str
             String Acc = sp.getString("rememberPwd",null);
             if(Acc.equals("1")){
                 rememberPwd.setChecked(true);
-                password.setText(sp.getString("password", null));
+                password.setText(sp.getString("PWD", null));
             }
         }
 
@@ -156,26 +157,31 @@ public class LoginActivity extends AppCompatActivity implements IDataAdapter<Str
     }
 
     @Override
-    public void setData(String data) {
-        status = Integer.parseInt(data);
+    public void setData(Object data) {
+        status = Integer.parseInt((String) data);
     }
+
 
     @Override
     public void notifyDataSetChanged() {
 
         if(rememberAcc.isChecked()){
-            editor.putString("account", username.getText().toString());
+            editor.putString("telCode", username.getText().toString());
             editor.putString("rememberAcc", "1");
         }else{
             editor.putString("rememberAcc", "0");
         }
 
         if(rememberPwd.isChecked()){
-            editor.putString("password", password.getText().toString());
+            editor.putString("PWD", password.getText().toString());
             editor.putString("rememberPwd", "1");
         }else{
             editor.putString("rememberPwd", "0");
         }
+
+        editor.putString("receivePackageID", user.getReceivePackageID());
+        editor.putString("delivePackageID", user.getDelivePackageID());
+        editor.putString("transPackageID", user.geTransPackageID());
 
         editor.commit();
 
@@ -190,5 +196,11 @@ public class LoginActivity extends AppCompatActivity implements IDataAdapter<Str
             Toast.makeText(getApplicationContext(), "用户不存在!", Toast.LENGTH_LONG).show();
             refreshCode();
         }
+    }
+
+    @Override
+    public void setUserInfo(UserInfo userInfo) {
+        user = userInfo;
+        Log.d("++++++++++++++++", user.toString());
     }
 }
