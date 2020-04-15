@@ -2,6 +2,7 @@ package extrace.ui.domain;
 
 import java.util.Locale;
 
+import extrace.ui.misc.MapActivity;
 import zxing.util.CaptureActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ import extrace.misc.model.ExpressSheet;
 import extrace.net.IDataAdapter;
 import extrace.ui.main.R;
 import extrace.ui.misc.CustomerListActivity;
+import zxing.util.ViewfinderView;
 
 public class ExpressEditActivity extends AppCompatActivity implements ActionBar.TabListener,IDataAdapter<ExpressSheet> {
 
@@ -414,6 +417,8 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 		private ImageView mbtnRcv;
 		private ImageView mbtnSnd;
 
+		private Button trace;
+
 		public static ExpressEditFragment1 newInstance() {
 			ExpressEditFragment1 fragment = new ExpressEditFragment1();
 			return fragment;
@@ -471,7 +476,18 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 							((ExpressEditActivity) getActivity()).GetCustomer(REQUEST_SND);
 						}
 					});
+
+			trace = (Button) rootView.findViewById(R.id.btnTrace);
+			trace.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent();
+					intent.setClass(getActivity(), MapActivity.class);
+					startActivity(intent);
+				}
+			});
 			return rootView;
+
 		}
 		
 		void RefreshUI(ExpressSheet es){
