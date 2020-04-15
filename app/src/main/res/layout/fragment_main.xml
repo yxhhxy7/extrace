@@ -81,13 +81,14 @@
             android:paddingTop="15dip" >
 
             <ImageView
-                android:id="@+id/action_pk_exp"
+                android:id="@+id/action_pk_exp_icon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/find_more_friend_scan" />
 
             <TextView
+                android:id="@+id/action_pk_exp"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"
@@ -111,13 +112,14 @@
             android:paddingTop="15dip" >
 
             <ImageView
-                android:id="@+id/action_pk_pkg"
+                android:id="@+id/action_pk_pkg_icon"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/find_more_friend_shake" />
 
             <TextView
+                android:id="@+id/action_pk_pkg"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_marginLeft="10dp"

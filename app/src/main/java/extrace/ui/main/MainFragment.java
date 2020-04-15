@@ -6,7 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import extrace.ui.domain.ExpressDeliveActivity;
 import extrace.ui.domain.ExpressEditActivity;
+import extrace.ui.domain.PackageExpActivity;
 import extrace.ui.domain.StartExpressActivity;
 import extrace.ui.misc.CustomerListActivity;
 
@@ -58,11 +62,28 @@ public class MainFragment  extends Fragment {
                     @Override
                     public void onClick(View view) {
                         StartQueryExpress();
+                        //StartDeliveExpress();
                     }
                 });
 
 
         //包裹拆包和打包在这里
+        //拆包
+        rootView.findViewById(R.id.action_pk_exp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getActivity(),"拆包",Toast.LENGTH_LONG).show();
+                StartQueryPackage();
+            }
+        });
+
+        //打包
+        rootView.findViewById(R.id.action_pk_pkg).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"打包",Toast.LENGTH_LONG).show();
+            }
+        });
 
         rootView.findViewById(R.id.action_cu_mng_icon).setOnClickListener(
                 new View.OnClickListener() {
@@ -121,4 +142,18 @@ public class MainFragment  extends Fragment {
         startActivityForResult(intent, 0);
     }
 
+    void StartDeliveExpress()
+    {
+        Intent intent = new Intent();
+        intent.putExtra("Action","Query");
+        intent.setClass(this.getActivity(), ExpressDeliveActivity.class);
+        startActivity(intent);
+    }
+
+    void StartQueryPackage(){
+        Intent intent = new Intent();
+        intent.putExtra("Action","Query");
+        intent.setClass(this.getActivity(), PackageExpActivity.class);
+        startActivityForResult(intent, 0);
+    }
 }

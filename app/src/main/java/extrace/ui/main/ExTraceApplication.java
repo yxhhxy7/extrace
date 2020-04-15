@@ -4,6 +4,7 @@ import extrace.misc.model.UserInfo;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 public class ExTraceApplication extends Application {
 	//private static final String PREFS_NAME = "ExTrace.cfg";
@@ -11,7 +12,10 @@ public class ExTraceApplication extends Application {
 //	String mServerUrl;
 //	String mMiscService,mDomainService;
     private static UserInfo userInfo;
-    
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
+
+
     public String getServerUrl() {  
         return settings.getString("ServerUrl", "");  
     }  
@@ -38,10 +42,21 @@ public class ExTraceApplication extends Application {
 
 		//临时造一个用户
 		userInfo = new UserInfo();
-		userInfo.setID(12);
-		userInfo.setReceivePackageID("1111112222");
-		userInfo.setTransPackageID("1111115555");
-		userInfo.setDelivePackageID("1111113333");
+		sp=getSharedPreferences("UserInfo", MODE_PRIVATE);//获取对象，并且命名文件的名称
+        String receivePackageID = sp.getString("receivePackageID", "");; //获取文件中的数据
+        String delivePackageID =sp.getString("delivePackageID","");
+        String transPackageID =sp.getString("transPackageID", "");
+        String telCode=sp.getString("telCode", "");
+        String PWD=sp.getString("PWD", "");
+		//userInfo.setID(12);
+		//userInfo.setReceivePackageID("1111112222");
+		//userInfo.setTransPackageID("1111115555");
+		//userInfo.setDelivePackageID("1111113331");
+        userInfo.setReceivePackageID(receivePackageID);
+        userInfo.setTransPackageID(transPackageID);
+        userInfo.setDelivePackageID(delivePackageID);
+        userInfo.setTelCode(telCode);
+        //Toast.makeText(getApplicationContext(),delivePackageID,Toast.LENGTH_LONG).show();
     }  
       
     public void onTerminate() {  
