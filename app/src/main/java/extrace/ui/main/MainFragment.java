@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import extrace.ui.domain.ExpressEditActivity;
 import extrace.ui.domain.StartExpressActivity;
+import extrace.ui.misc.ChaiBaoActivity;
 import extrace.ui.misc.CustomerListActivity;
 
 public class MainFragment  extends Fragment {
@@ -63,7 +64,22 @@ public class MainFragment  extends Fragment {
 
 
         //包裹拆包和打包在这里
+        rootView.findViewById(R.id.chai_bao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ChaiBao();
+            }
+        });
 
+        rootView.findViewById(R.id.da_bao).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+        // 客户管理和快件查询
         rootView.findViewById(R.id.action_cu_mng_icon).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -118,6 +134,13 @@ public class MainFragment  extends Fragment {
         Intent intent = new Intent();
         intent.putExtra("Action","None");
         intent.setClass(this.getActivity(), CustomerListActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    void ChaiBao(){
+        Intent intent = new Intent();
+        intent.putExtra("Action","None");
+        intent.setClass(this.getActivity(), ChaiBaoActivity.class);
         startActivityForResult(intent, 0);
     }
 
