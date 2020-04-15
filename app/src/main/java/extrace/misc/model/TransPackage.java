@@ -31,6 +31,7 @@ public class TransPackage  implements Serializable {
 	@Expose private String sourceNode;
 	@Expose private String targetNode;
 	@Expose private Date createTime;
+	@Expose private Date acceptTime;
 	@Expose private int status;
 	
 	public void setID(String value) {
@@ -64,11 +65,19 @@ public class TransPackage  implements Serializable {
 	public void setCreateTime(Date value) {
 		this.createTime = value;
 	}
-	
+
 	public Date getCreateTime() {
 		return createTime;
 	}
-	
+
+	public void setAcceptTime(Date value) {
+		this.acceptTime = value;
+	}
+
+	public Date getAcceptTime() {
+		return acceptTime;
+	}
+
 	public void setStatus(int value) {
 		this.status = value;
 	}
@@ -80,7 +89,7 @@ public class TransPackage  implements Serializable {
 	public String toString() {
 		return toString(false);
 	}
-	
+
 	public String toString(boolean idOnly) {
 		if (idOnly) {
 			return String.valueOf(getID());
@@ -92,6 +101,7 @@ public class TransPackage  implements Serializable {
 			sb.append("SourceNode=").append(getSourceNode()).append(" ");
 			sb.append("TargetNode=").append(getTargetNode()).append(" ");
 			sb.append("CreateTime=").append(getCreateTime()).append(" ");
+			sb.append("AcceptTime=").append(getAcceptTime()).append(" ");
 			sb.append("Status=").append(getStatus()).append(" ");
 			sb.append("]");
 			return sb.toString();
