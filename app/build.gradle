@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
 
 android {
+    signingConfigs {
+        key0 {
+            storeFile file('D:\\Androidkey\\key0.jks')
+            storePassword 'android'
+            keyPassword 'android'
+            keyAlias = 'key0'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "29.0.2"
     useLibrary 'org.apache.http.legacy'
@@ -35,4 +43,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.nepxion:zxing:1.0.12'
     // 'com.github.userswlwork:zxing:1.0.0'
+    implementation files('libs/BaiduLBS_Android.jar')
+    implementation files('libs/BaiduTraceSDK_v3_1_5.jar')
+    implementation files('libs/okhttp-3.8.1.jar')
+    implementation files('libs/okio-1.13.0.jar')
 }
+
