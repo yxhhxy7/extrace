@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -62,14 +63,29 @@ public class ExpressListFragment extends ListFragment {
         // Give some text to display if there is no data.  In a real
         // application this would come from a resource.
         setEmptyText("快递列表空的!");
-        
+        /*
         mAdapter = new ExpressListAdapter(new ArrayList<ExpressSheet>(), this.getActivity(), mExType);
         setListAdapter(mAdapter);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE); 
         registerForContextMenu(getListView());
-        
         RefreshList();
+
+         */
+        onResume();
+	}
+
+	@Override
+	public  void onResume() {
+
+
+		super.onResume();
+		mAdapter = new ExpressListAdapter(new ArrayList<ExpressSheet>(), this.getActivity(), mExType);
+		setListAdapter(mAdapter);
+
+		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		registerForContextMenu(getListView());
+		RefreshList();
 	}
 
 	@Override
@@ -99,7 +115,15 @@ public class ExpressListFragment extends ListFragment {
 			mListener.onFragmentInteraction(mAdapter.getItem(position).getID());
 		}
 		//EditExpress(mAdapter.getItem(position));
-		DeliveExpress(mAdapter.getItem(position));
+		switch (mExType){
+			case "ExDLV":
+				DeliveExpress(mAdapter.getItem(position));
+				break;
+			case "ExRCV":
+				ReceiveExpress(mAdapter.getItem(position));
+				break;
+		}
+		//DeliveExpress(mAdapter.getItem(position));
 		//Toast.makeText(getActivity(),"别崩了",Toast.LENGTH_SHORT).show();
 	}
 
@@ -133,6 +157,7 @@ public class ExpressListFragment extends ListFragment {
 		}
 		mLoader = new ExpressListLoader(mAdapter, this.getActivity());
 		mLoader.LoadExpressListInPackage(pkgId);
+		Log.d("我是pkgId",pkgId);
 		//mLoader.LoadExpressList();
 	}
 
@@ -144,13 +169,21 @@ public class ExpressListFragment extends ListFragment {
 		intent.setClass(this.getActivity(), ExpressEditActivity.class);
 		startActivityForResult(intent, 0);  	
     }
-
+	//派送任务
     void DeliveExpress(ExpressSheet es){
 		Intent intent = new Intent();
 		intent.putExtra("Action","Delive");
 		intent.putExtra("ExpressSheet",es);
 		intent.setClass(this.getActivity(),ExpressDeliveActivity.class);
-		startActivity(intent);
+		startActivityForResult(intent, 0);
+	}
+	//揽收任务
+	void ReceiveExpress(ExpressSheet es){
+		Intent intent = new Intent();
+		intent.putExtra("Action","Receive");
+		intent.putExtra("ExpressSheet",es);
+		intent.setClass(this.getActivity(),ExpressReciveActivity.class);
+		startActivityForResult(intent, 0);
 	}
 
 }

@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import extrace.ui.domain.ExpressDeliveActivity;
 import extrace.ui.domain.ExpressEditActivity;
-import extrace.ui.domain.PackageExpActivity;
 import extrace.ui.domain.StartExpressActivity;
 import extrace.ui.misc.CustomerListActivity;
 
@@ -73,7 +72,7 @@ public class MainFragment  extends Fragment {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(getActivity(),"拆包",Toast.LENGTH_LONG).show();
-                StartQueryPackage();
+                //StartQueryPackage();
             }
         });
 
@@ -150,10 +149,5 @@ public class MainFragment  extends Fragment {
         startActivity(intent);
     }
 
-    void StartQueryPackage(){
-        Intent intent = new Intent();
-        intent.putExtra("Action","Query");
-        intent.setClass(this.getActivity(), PackageExpActivity.class);
-        startActivityForResult(intent, 0);
-    }
+
 }
