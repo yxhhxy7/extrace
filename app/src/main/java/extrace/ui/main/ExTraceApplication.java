@@ -74,7 +74,7 @@ public class ExTraceApplication extends Application {
         Log.d("!!!!", UID);
         String PWD=sp.getString("PWD", "");
 		//userInfo.setID(12);
-		//userInfo.setReceivePackageID("1111112222");
+		//userInfo.setReceivePackageID("1111113333");
 		//userInfo.setTransPackageID("1111115555");
 		//userInfo.setDelivePackageID("1111113331");
         if(!UID.isEmpty()){

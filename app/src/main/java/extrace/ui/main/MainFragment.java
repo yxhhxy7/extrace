@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import extrace.ui.domain.ExpressDeliveActivity;
 import extrace.ui.domain.ExpressEditActivity;
 import extrace.ui.domain.StartExpressActivity;
 import extrace.ui.misc.ChaiBaoActivity;
@@ -63,6 +65,7 @@ public class MainFragment  extends Fragment {
                     @Override
                     public void onClick(View view) {
                         StartQueryExpress();
+                        //StartDeliveExpress();
                     }
                 });
 
@@ -172,6 +175,15 @@ public class MainFragment  extends Fragment {
         // startActivityForResult(intent, 0);
         startActivity(intent);
     }
+
+    void StartDeliveExpress()
+    {
+        Intent intent = new Intent();
+        intent.putExtra("Action","Query");
+        intent.setClass(this.getActivity(), ExpressDeliveActivity.class);
+        startActivity(intent);
+    }
+
 
     void ZhuanYun(){
         Intent intent = new Intent();
