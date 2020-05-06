@@ -1,0 +1,73 @@
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:paddingLeft="8dip"
+            android:paddingTop="7dip"
+            android:textSize="23dip"
+            android:text="包裹ID:" />
+
+        <TextView
+            android:id="@+id/packageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:paddingTop="7dip"
+            android:textSize="23dip"
+            android:text="" />
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/da_bao_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        tools:context="extrace.ui.domain.ExpressEditActivity" >
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/add_express_sheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn1"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:text="添加快件"
+            android:textSize="23dip"/>
+
+        <Button
+            android:id="@+id/submit_da_bao_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_btn1"
+            android:text="确认打包"
+            android:textColor="#FFFFFF"
+            android:layout_weight="1"
+            android:textSize="23dip" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

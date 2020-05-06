@@ -15,6 +15,7 @@ package extrace.misc.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 
 import com.google.gson.annotations.Expose;
 
@@ -30,6 +31,7 @@ public class TransPackage  implements Serializable {
 	@Expose private String ID;
 	@Expose private String sourceNode;
 	@Expose private String targetNode;
+	@Expose private HashSet<PackageRoute> route;
 	@Expose private Date createTime;
 	@Expose private Date acceptTime;
 	@Expose private int status;
@@ -85,9 +87,17 @@ public class TransPackage  implements Serializable {
 	public int getStatus() {
 		return status;
 	}
-		
+
 	public String toString() {
 		return toString(false);
+	}
+
+	public HashSet<PackageRoute> getRoute() {
+		return route;
+	}
+
+	public void setRoute(HashSet<PackageRoute> route) {
+		this.route = route;
 	}
 
 	public String toString(boolean idOnly) {
@@ -103,6 +113,7 @@ public class TransPackage  implements Serializable {
 			sb.append("CreateTime=").append(getCreateTime()).append(" ");
 			sb.append("AcceptTime=").append(getAcceptTime()).append(" ");
 			sb.append("Status=").append(getStatus()).append(" ");
+			sb.append("Route=").append(getRoute()).append(" ");
 			sb.append("]");
 			return sb.toString();
 		}

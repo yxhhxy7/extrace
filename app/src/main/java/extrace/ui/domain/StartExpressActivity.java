@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import extrace.net.JsonUtils;
+import extrace.ui.main.ExTraceApplication;
 import extrace.ui.misc.RegionListActivity;
 import zxing.util.CaptureActivity;
 import android.content.Intent;

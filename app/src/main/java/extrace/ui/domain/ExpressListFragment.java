@@ -8,17 +8,13 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import extrace.loader.ExpressListLoader;
 import extrace.misc.model.ExpressSheet;
 import extrace.ui.main.ExTraceApplication;
 
-/**
- * A fragment representing a list of Items.
- * <p />
- * <p />
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- */
+
 public class ExpressListFragment extends ListFragment {
 
 	private static final String ARG_EX_TYPE = "ExType";
@@ -96,7 +92,9 @@ public class ExpressListFragment extends ListFragment {
 			// fragment is attached to one) that an item has been selected.
 			mListener.onFragmentInteraction(mAdapter.getItem(position).getID());
 		}
-		EditExpress(mAdapter.getItem(position));
+		//EditExpress(mAdapter.getItem(position));
+		DeliveExpress(mAdapter.getItem(position));
+		//Toast.makeText(getActivity(),"别崩了",Toast.LENGTH_SHORT).show();
 	}
 
 	/**
@@ -118,12 +116,15 @@ public class ExpressListFragment extends ListFragment {
 		String pkgId = null;
 		switch(mExType){
 		case "ExDLV":
+			((ExTraceApplication)getActivity().getApplication()).refresh();
 			pkgId = ((ExTraceApplication)this.getActivity().getApplication()).getLoginUser().getDelivePackageID();
 			break;
 		case "ExRCV":
+			((ExTraceApplication)getActivity().getApplication()).refresh();
 			pkgId = ((ExTraceApplication)this.getActivity().getApplication()).getLoginUser().getReceivePackageID();
 			break;
 		case "ExTAN":
+			((ExTraceApplication)getActivity().getApplication()).refresh();
 			pkgId = ((ExTraceApplication)this.getActivity().getApplication()).getLoginUser().geTransPackageID();
 			break;
 		}
@@ -140,5 +141,13 @@ public class ExpressListFragment extends ListFragment {
 		intent.setClass(this.getActivity(), ExpressEditActivity.class);
 		startActivityForResult(intent, 0);  	
     }
+
+    void DeliveExpress(ExpressSheet es){
+		Intent intent = new Intent();
+		intent.putExtra("Action","Delive");
+		intent.putExtra("ExpressSheet",es);
+		intent.setClass(this.getActivity(),ExpressDeliveActivity.class);
+		startActivity(intent);
+	}
 
 }

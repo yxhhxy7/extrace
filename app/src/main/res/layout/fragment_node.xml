@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="extrace.ui.domain.ExpressEditActivity$ExpressEditFragment1" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="15dip"
+        android:paddingTop="8dip"
+        android:paddingRight="15dip">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="源节点:"
+                android:textColor="@color/black"
+                android:textSize="19dip" />
+
+            <TextView
+                android:id="@+id/sourceNode"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="16dip" />
+
+            <ImageView
+                android:id="@+id/query_source_node"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/find_more_friend_photograph_icon" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="5dip"
+            android:paddingTop="4dip"
+            android:paddingBottom="4dip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center"
+                android:text="目标节点:"
+                android:textColor="@color/black"
+                android:textSize="19dip" />
+
+            <EditText
+                android:id="@+id/targetNode"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textSize="16dip"
+                android:background="@null"/>
+
+            <ImageView
+                android:id="@+id/query_target_node"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/find_more_friend_photograph_icon" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

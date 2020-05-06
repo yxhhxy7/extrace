@@ -54,6 +54,22 @@ public class ExpressLoader extends HttpAsyncTask {
 			adapter.getData().onSave();
 			adapter.notifyDataSetChanged();*/
             Toast.makeText(context, "快件运单信息保存完成!", Toast.LENGTH_LONG).show();
+        }else if(class_name.equals("true"))
+        {
+            ExpressSheet ci = JsonUtils.fromJson(json_data, new TypeToken<ExpressSheet>(){});
+            adapter.setData(ci);
+            adapter.notifyDataSetChanged();
+        }
+        else if(class_name.equals("unableDispach"))
+        {
+            /*
+            //ExpressSheet ci = JsonUtils.fromJson(json_data, new TypeToken<ExpressSheet>(){});
+            ExpressSheet ci=new ExpressSheet();
+            ci.setID("unable");
+            adapter.setData(ci);
+            //adapter.notifyDataSetChanged();
+            */
+
         }
         else
         {
@@ -78,6 +94,7 @@ public class ExpressLoader extends HttpAsyncTask {
 
     public void New(String id)
     {
+        ((ExTraceApplication)context.getApplication()).refresh();
         int uid = ((ExTraceApplication)context.getApplication()).getLoginUser().getUID();
         url += "newExpressSheet/id/"+ id + "/uid/"+ uid + "?_type=json";
 
@@ -107,6 +124,7 @@ public class ExpressLoader extends HttpAsyncTask {
 
     public void Receive(String id)
     {
+        ((ExTraceApplication)context.getApplication()).refresh();
         int uid = ((ExTraceApplication)context.getApplication()).getLoginUser().getUID();
         url += "receiveExpressSheetId/id/"+ id + "/uid/"+ uid + "?_type=json";
         try {
@@ -118,6 +136,7 @@ public class ExpressLoader extends HttpAsyncTask {
 
     public void Delivery(String id)
     {
+        ((ExTraceApplication)context.getApplication()).refresh();
         int uid = ((ExTraceApplication)context.getApplication()).getLoginUser().getUID();
         url += "deliveryExpressSheetId/id/"+ id + "/uid/"+ uid + "?_type=json";
         try {
@@ -126,4 +145,27 @@ public class ExpressLoader extends HttpAsyncTask {
             e.printStackTrace();
         }
     }
+
+    public void ReadyDispatch(String id){
+        ((ExTraceApplication)context.getApplication()).refresh();
+        String telCode=((ExTraceApplication)context.getApplication()).getLoginUser().getTelCode();
+        url += "readyDispatchExpressSheetId/id/"+ id + "/telCode/"+ telCode +"?_type=json";
+        try {
+            execute(url,"GET");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void Dispatch(String id){
+        ((ExTraceApplication)context.getApplication()).refresh();
+        String telCode=((ExTraceApplication)context.getApplication()).getLoginUser().getTelCode();
+        url += "dispatchExpressSheetId/id/"+ id + "/telCode/"+ telCode +"?_type=json";
+        try {
+            execute(url,"GET");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

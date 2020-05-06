@@ -29,8 +29,8 @@ import extrace.net.HttpResponseParam.RETURN_STATUS;
 
 public abstract class HttpAsyncTask extends
 		AsyncTask<String, Integer, HttpResponseParam> {
-	private static final int REGISTRATION_TIMEOUT = 3 * 1000;
-	private static final int WAIT_TIMEOUT = 5 * 1000;
+	private static final int REGISTRATION_TIMEOUT = 3 * 1000 * 3;
+	private static final int WAIT_TIMEOUT = 5 * 1000 * 5;
 
 	private static final String TAG = "ExTraceHttpUtils";
 	private static final String USER_AGENT = "Mozilla/4.5";

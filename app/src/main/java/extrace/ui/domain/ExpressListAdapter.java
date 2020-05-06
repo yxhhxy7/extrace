@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ public class ExpressListAdapter extends ArrayAdapter<ExpressSheet> implements ID
 	
 	public ExpressListAdapter(List<ExpressSheet> itemList, Context ctx, String ex_type) {
 		super(ctx, R.layout.express_list_item, itemList);
-		
 		this.itemList = itemList;
 		this.context = ctx;	
 		this.ex_type = ex_type;
@@ -68,18 +68,7 @@ public class ExpressListAdapter extends ArrayAdapter<ExpressSheet> implements ID
 
 		ExpressSheet es = getItem(position);
 		switch(ex_type){
-		case "ExDLV":	//派送
-			if(es.getRecever() != null){
-				hd.name.setText(es.getRecever().getName());			//接收者姓名
-				hd.telCode.setText(es.getRecever().getTelCode());	//接收者电话
-				hd.address.setText(es.getRecever().getAddress());	//接收者
-			}
-			if(es.getAccepteTime() != null){
-				//SimpleDateFormat myFmt=new SimpleDateFormat("MM月dd日 HH:mm");
-				hd.time.setText(DateFormat.format("MM月dd日 HH:mm",es.getAccepteTime()));
-			}
-			break;
-		case "ExRCV":	//揽收
+			case "ExRCV":	//揽收
 			if(es.getSender() != null){
 				hd.name.setText(es.getSender().getName());			//发送者姓名
 				hd.telCode.setText(es.getSender().getTelCode());
@@ -101,6 +90,19 @@ public class ExpressListAdapter extends ArrayAdapter<ExpressSheet> implements ID
 				hd.time.setText(myFmt.format(es.getAccepteTime()));
 			}
 			break;
+			case "ExDLV":	//派送
+			default:
+				if(es.getRecever() != null){
+					hd.name.setText(es.getRecever().getName());			//接收者姓名
+					hd.telCode.setText(es.getRecever().getTelCode());	//接收者电话
+					hd.address.setText(es.getRecever().getAddress());	//接收者
+				}
+				if(es.getAccepteTime() != null){
+					//SimpleDateFormat myFmt=new SimpleDateFormat("MM月dd日 HH:mm");
+					hd.time.setText(DateFormat.format("MM月dd日 HH:mm",es.getAccepteTime()));
+				}
+				break;
+
 		}
 
 		String stText = "";
@@ -127,6 +129,9 @@ public class ExpressListAdapter extends ArrayAdapter<ExpressSheet> implements ID
 	@Override
 	public void setData(List<ExpressSheet> data) {
 		this.itemList = data;
+		if(!data.isEmpty()){
+			Log.d("****", data.get(0).toString());
+		}
 	}	
 	
 	private class hold{

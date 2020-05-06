@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import extrace.ui.domain.ExpressListFragment;
 import extrace.ui.domain.ExpressListFragment.OnFragmentInteractionListener;
+import extrace.ui.domain.PackageListFragment;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener,OnFragmentInteractionListener {
 
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         	case 2:
                 return ExpressListFragment.newInstance("ExRCV");	//揽收快件
         	case 3:
-                return ExpressListFragment.newInstance("ExTAN");	//转运快件
+                return PackageListFragment.newInstance("ExTAN");	//转运快件
         	}
         	return null;
         }

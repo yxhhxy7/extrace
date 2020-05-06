@@ -1,7 +1,5 @@
 package extrace.ui.misc;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,21 +7,24 @@ import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+
+import java.util.List;
+
 import extrace.loader.ExpressListLoader;
 import extrace.misc.model.ExpressSheet;
+import extrace.misc.model.TransPackage;
 import extrace.ui.domain.ExpressEditActivity;
 import extrace.ui.domain.ExpressListAdapter;
-import extrace.ui.main.ExTraceApplication;
 
 
-public class ChaiBaoListFragment extends ListFragment {
+public class ZhuanYunListFragment extends ListFragment {
 
     private static final String ARG_EX_TYPE = "ExType";
 
     // TODO: Rename and change types of parameters
     private String mExType;
 
-    private ExpressListAdapter mAdapter;
+    private TransPackageListAdapter mAdapter;
     private ExpressListLoader mLoader;
 
     Intent mIntent;
@@ -31,9 +32,9 @@ public class ChaiBaoListFragment extends ListFragment {
     private extrace.ui.domain.ExpressListFragment.OnFragmentInteractionListener mListener;
 
     // TODO: Rename and change types of parameters
-    public static ChaiBaoListFragment newInstance(String ex_type) {
+    public static ZhuanYunListFragment newInstance(String ex_type) {
 
-        ChaiBaoListFragment fragment = new ChaiBaoListFragment();
+        ZhuanYunListFragment fragment = new ZhuanYunListFragment();
 
         Bundle args = new Bundle();
         args.putString(ARG_EX_TYPE, ex_type);	//构造方法传入参数,使用Bundle来作为参数的容器
@@ -45,7 +46,7 @@ public class ChaiBaoListFragment extends ListFragment {
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ChaiBaoListFragment() {
+    public ZhuanYunListFragment() {
     }
 
     @Override public void onActivityCreated(Bundle savedInstanceState) {
@@ -57,15 +58,14 @@ public class ChaiBaoListFragment extends ListFragment {
         }
         // Give some text to display if there is no data.  In a real
         // application this would come from a resource.
-        setEmptyText("快递列表空的!");
+        //setEmptyText("快递列表空的!");
 
-        mAdapter = new ExpressListAdapter(new ArrayList<ExpressSheet>(), this.getActivity(), mExType);
+        /*mAdapter = new ExpressListAdapter(new ArrayList<ExpressSheet>(), this.getActivity(), mExType);
         setListAdapter(mAdapter);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        registerForContextMenu(getListView());
-
-        RefreshList();
+        registerForContextMenu(getListView());*/
+        init();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class ChaiBaoListFragment extends ListFragment {
             // fragment is attached to one) that an item has been selected.
             mListener.onFragmentInteraction(mAdapter.getItem(position).getID());
         }
-        EditExpress(mAdapter.getItem(position));
+        // EditExpress(mAdapter.getItem(position));
     }
 
     /**
@@ -111,12 +111,23 @@ public class ChaiBaoListFragment extends ListFragment {
         public void onFragmentInteraction(String id);
     }
 
-    private void RefreshList()
+    public void init(){
+        setEmptyText("包裹列表空的!");
+        mAdapter = new TransPackageListAdapter(null, this.getActivity(), mExType);
+        setListAdapter(mAdapter);
+
+        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        registerForContextMenu(getListView());
+    }
+
+    public void RefreshList(List<TransPackage> myList)
     {
 
-        mLoader = new ExpressListLoader(mAdapter, this.getActivity());
-        mLoader.LoadExpressListInPackage( mExType);
-        //mLoader.LoadExpressList();
+        mAdapter = new TransPackageListAdapter(myList, this.getActivity(), mExType);
+        setListAdapter(mAdapter);
+
+        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        registerForContextMenu(getListView());
     }
 
     void EditExpress(ExpressSheet es)

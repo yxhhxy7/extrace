@@ -10,6 +10,10 @@ import extrace.ui.domain.ExpressEditActivity;
 import extrace.ui.domain.StartExpressActivity;
 import extrace.ui.misc.ChaiBaoActivity;
 import extrace.ui.misc.CustomerListActivity;
+import extrace.ui.misc.DaBaoActivity;
+import extrace.ui.misc.MapActivity;
+import extrace.ui.misc.NewPackageActivity;
+import extrace.ui.misc.ZhuanYunActivity;
 
 public class MainFragment  extends Fragment {
 
@@ -74,10 +78,17 @@ public class MainFragment  extends Fragment {
         rootView.findViewById(R.id.da_bao).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DaBao();
             }
         });
 
+        // 快递转运
+        rootView.findViewById(R.id.zhuan_yun).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ZhuanYun();
+            }
+        });
 
         // 客户管理和快件查询
         rootView.findViewById(R.id.action_cu_mng_icon).setOnClickListener(
@@ -110,6 +121,16 @@ public class MainFragment  extends Fragment {
                     }
                 });
 
+        // 路径查询
+        rootView.findViewById(R.id.route).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra("Action","None");
+                intent.setClass(getActivity(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
         return rootView;
     }
 
@@ -141,6 +162,21 @@ public class MainFragment  extends Fragment {
         Intent intent = new Intent();
         intent.putExtra("Action","None");
         intent.setClass(this.getActivity(), ChaiBaoActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
+    void DaBao(){
+        Intent intent = new Intent();
+        // intent.putExtra("Action","None");
+        intent.setClass(this.getActivity(), NewPackageActivity.class);
+        // startActivityForResult(intent, 0);
+        startActivity(intent);
+    }
+
+    void ZhuanYun(){
+        Intent intent = new Intent();
+        intent.putExtra("Action","None");
+        intent.setClass(this.getActivity(), ZhuanYunActivity.class);
         startActivityForResult(intent, 0);
     }
 

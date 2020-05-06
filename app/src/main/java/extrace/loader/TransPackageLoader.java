@@ -1,6 +1,7 @@
 package extrace.loader;
 
 import android.app.Activity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.reflect.TypeToken;
@@ -30,6 +31,7 @@ public class TransPackageLoader extends HttpAsyncTask {
 		if(class_name.equals("TransPackage"))
 		{
 			TransPackage ci = JsonUtils.fromJson(json_data, new TypeToken<TransPackage>(){});
+			Log.d("packageId", ci.getID());
 			adapter.setData(ci);
 			adapter.notifyDataSetChanged();
 		}
@@ -68,6 +70,17 @@ public class TransPackageLoader extends HttpAsyncTask {
 		try {
 			execute(url, "POST", jsonObj);
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void NewPackage(){
+		int uid = ((ExTraceApplication)context.getApplication()).getLoginUser().getUID();
+		url += "newTransPackage/"  + uid + "?_type=json";
+		Log.d("^^^^^", url);
+		try {
+			execute(url,"GET");
+		}catch (Exception e){
 			e.printStackTrace();
 		}
 	}

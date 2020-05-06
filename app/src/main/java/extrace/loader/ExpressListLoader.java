@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.reflect.TypeToken;
 
 import extrace.misc.model.ExpressSheet;
@@ -32,10 +33,13 @@ public class ExpressListLoader extends HttpAsyncTask {
 	public void onDataReceive(String class_data, String json_data) {
 		if(json_data.equals("Deleted")){
 			//adapter.getData().remove(0);	//这个地方不好处理
-			Toast.makeText(context, "快件信息已删除!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, "包裹已拆包!", Toast.LENGTH_SHORT).show();
 		}
 		else{
 			List<ExpressSheet> cstm = JsonUtils.fromJson(json_data, new TypeToken<List<ExpressSheet>>(){});
+			for(ExpressSheet e:cstm){
+				Log.d("ExpressListLoader", e.toString());
+			}
 			adapter.setData(cstm);
 			adapter.notifyDataSetChanged();
 		}
@@ -49,6 +53,7 @@ public class ExpressListLoader extends HttpAsyncTask {
 	public void LoadExpressListInPackage(String pkgId)
 	{
 		url += "getExpressListInPackage/PackageId/"+pkgId+"?_type=json";
+		Log.d("ExpressListLoader", url);
 		try {
 			execute(url, "GET");
 		} catch (Exception e) {

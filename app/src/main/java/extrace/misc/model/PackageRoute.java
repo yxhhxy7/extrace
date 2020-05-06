@@ -12,6 +12,8 @@
  * License Type: Evaluation
  */
 package extrace.misc.model;
+import com.google.gson.annotations.Expose;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,11 +27,11 @@ public class PackageRoute implements Serializable {
 	}
 	
 	
-	private int SN;
-	private TransPackage pkg;
-	private float x;
-	private float y;
-	private Date tm;
+	@Expose private int SN;
+	@Expose private TransPackage pkg;
+	@Expose private double x;
+	@Expose private double y;
+	@Expose private Date tm;
 	
 	public void setSN(int value) {
 		this.SN = value;
@@ -43,19 +45,19 @@ public class PackageRoute implements Serializable {
 		return getSN();
 	}
 	
-	public void setX(float value) {
+	public void setX(double value) {
 		this.x = value;
 	}
 	
-	public float getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public void setY(float value) {
+	public void setY(double value) {
 		this.y = value;
 	}
 	
-	public float getY() {
+	public double getY() {
 		return y;
 	}
 	

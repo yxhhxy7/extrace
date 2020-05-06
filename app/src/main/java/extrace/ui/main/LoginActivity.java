@@ -182,6 +182,7 @@ public class LoginActivity extends AppCompatActivity implements LoginDataAdapter
         editor.putString("receivePackageID", user.getReceivePackageID());
         editor.putString("delivePackageID", user.getDelivePackageID());
         editor.putString("transPackageID", user.geTransPackageID());
+        editor.putString("UID", Integer.toString(user.getUID()));
 
         editor.commit();
 

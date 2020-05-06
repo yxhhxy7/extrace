@@ -2,7 +2,6 @@ package extrace.ui.domain;
 
 import java.util.Locale;
 
-import extrace.ui.misc.MapActivity;
 import zxing.util.CaptureActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -33,7 +33,6 @@ import extrace.misc.model.ExpressSheet;
 import extrace.net.IDataAdapter;
 import extrace.ui.main.R;
 import extrace.ui.misc.CustomerListActivity;
-import zxing.util.ViewfinderView;
 
 public class ExpressEditActivity extends AppCompatActivity implements ActionBar.TabListener,IDataAdapter<ExpressSheet> {
 
@@ -145,6 +144,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 		switch (id) {
 		case R.id.action_action:
 			if(item.getTitle().equals("收件")){
+				//Toast.makeText(getApplicationContext(),"交付",Toast.LENGTH_SHORT).show();
 				Receive(mItem.getID());
 			}
 			else if(item.getTitle().equals("交付")){
@@ -177,6 +177,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 		// When the given tab is selected, switch to the corresponding page in
 		// the ViewPager.
 		mViewPager.setCurrentItem(tab.getPosition());
+
 	}
 
 	@Override
@@ -385,12 +386,13 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			}
 			return null;
 		}
+
 	}
 
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class ExpressEditFragment1 extends Fragment {
+	public static class ExpressEditFragment1 extends Fragment implements IDataAdapter<ExpressSheet>{
 		
 		private TextView mIDView;
 		private TextView mRcvNameView;
@@ -417,7 +419,9 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 		private ImageView mbtnRcv;
 		private ImageView mbtnSnd;
 
-		private Button trace;
+		private Button mbtnDelive;
+		private ExpressSheet expressSheet;
+		private ExpressLoader mLoader;
 
 		public static ExpressEditFragment1 newInstance() {
 			ExpressEditFragment1 fragment = new ExpressEditFragment1();
@@ -453,6 +457,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			mStatusView =  (TextView) rootView.findViewById(R.id.expressStatus);
 			
 			mbtnCapture = (ImageView) rootView.findViewById(R.id.action_ex_capture_icon);
+			mbtnDelive=rootView.findViewById(R.id.btnDelivry);
 			mbtnCapture.setOnClickListener(
 					new View.OnClickListener() {
 						@Override
@@ -477,17 +482,15 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 						}
 					});
 
-			trace = (Button) rootView.findViewById(R.id.btnTrace);
-			trace.setOnClickListener(new View.OnClickListener() {
+			mbtnDelive.setOnClickListener(new View.OnClickListener() {
+
 				@Override
 				public void onClick(View view) {
-					Intent intent = new Intent();
-					intent.setClass(getActivity(), MapActivity.class);
-					startActivity(intent);
+					//readyDispatch();
+					//Toast.makeText(getActivity(),"准备派送",Toast.LENGTH_LONG).show();
 				}
 			});
 			return rootView;
-
 		}
 		
 		void RefreshUI(ExpressSheet es){
@@ -518,6 +521,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			}
 			mStatusView.setText(stText);
 			displayBtn(es);
+			readyDispatch(es);
 		}
 		
 		void displayBtn(ExpressSheet es){	//按钮状态控制
@@ -571,6 +575,40 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				//mSndDptView.setText(null);
 				//mSndRegionView.setText(null);
 			}
+		}
+
+		@Override
+		public ExpressSheet getData() {
+			return null;
+		}
+
+		@Override
+		public void setData(ExpressSheet data) {
+			expressSheet=data;
+		}
+
+
+
+		@Override
+		public void notifyDataSetChanged() {
+			if(expressSheet.getID()!=null){
+				Toast.makeText(getActivity(),"准备派送!",Toast.LENGTH_LONG).show();
+			}else{
+				Toast.makeText(getActivity(),"准备派送失败!",Toast.LENGTH_LONG).show();
+			}
+		}
+
+		public void readyDispatch(ExpressSheet es){
+			mLoader=new ExpressLoader(this,this.getActivity());
+			mbtnDelive.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					mLoader.ReadyDispatch(es.getID());
+					//Toast.makeText(getActivity(),es.getID(),Toast.LENGTH_LONG).show();
+				}
+			});
+
+
 		}
 	}
 

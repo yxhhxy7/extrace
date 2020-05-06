@@ -1,13 +1,16 @@
 package extrace.ui.misc;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.Locale;
 
-import extrace.loader.ChaiBaoLoader;
-import extrace.net.JsonUtils;
+import extrace.loader.DaBaoLoader;
+import extrace.misc.model.TransPackage;
+import extrace.net.NotifyAdapter;
 import extrace.ui.domain.ExpressListFragment;
+import extrace.ui.main.MainActivity;
 import zxing.util.CaptureActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +19,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -23,22 +27,23 @@ import android.view.MenuItem;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import extrace.loader.ExpressLoader;
-import extrace.misc.model.CustomerInfo;
 import extrace.misc.model.ExpressSheet;
 import extrace.net.IDataAdapter;
 import extrace.ui.main.R;
-import extrace.ui.misc.CustomerListActivity;
-import zxing.util.ViewfinderView;
 
-public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabListener,IDataAdapter<Boolean>, ExpressListFragment.OnFragmentInteractionListener {
+public class DaBaoActivity extends AppCompatActivity implements ActionBar.TabListener,IDataAdapter<ExpressSheet>, NotifyAdapter<Boolean>,ExpressListFragment.OnFragmentInteractionListener {
 
 //	public static final int INTENT_NEW = 1;
 //	public static final int INTENT_EDIT = 2;
 
     public static final int REQUEST_CAPTURE = 100;
+    public static final int REQUEST_ADD_ES = 101;
+    public static final int REQUEST_SOURCE_NODE = 103;
+    public static final int REQUEST_TARGET_NODE = 104;
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -47,28 +52,36 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
      */
     ViewPager mViewPager;
     private Button submitBtn;
+    private Button addEsBtn;
 
     private ExpressSheet mItem = new ExpressSheet();
 
     private Intent mIntent;
-    private ChaiBaoListFragment baseFragment;
-    private CustomerInfo sndCustomer = new CustomerInfo();
-    private CustomerInfo rcvCustomer = new CustomerInfo();
+    private DaBaoListFragment baseFragment;
+    private TransPackage myPackage;
     private String packageId;
+    private String esId;
     private MenuItem action_menu_item;
     private boolean new_es = false;	//新建
+    private ArrayList<ExpressSheet> myEsList = new ArrayList<>();
+    private TextView packageIdView;
 
-    private ChaiBaoLoader mChaiBaoLoader;
-    private Boolean status = null;
+    private ExpressSheet myEs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_chai_bao);
+        setContentView(R.layout.activity_da_bao);
 
         mIntent = getIntent();
-        if (mIntent.hasExtra("Action")) {
+        myPackage = (TransPackage) mIntent.getSerializableExtra("BarCode");
+        Log.d("^^^^^^", myPackage.toString());
+        packageId = myPackage.getID();
+        packageIdView = findViewById(R.id.packageId);
+        packageIdView.setText(" "+ packageId);
+        init();
+        /*if (mIntent.hasExtra("Action")) {
             if(mIntent.getStringExtra("Action").equals("None")){
                 StartCapture();
             }
@@ -80,7 +93,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         else{
             this.setResult(RESULT_CANCELED, mIntent);
             this.finish();
-        }
+        }*/
 
 
     }
@@ -106,37 +119,46 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
     }
 
     @Override
-    public Boolean getData() {
-        return true;
+    public ExpressSheet getData() {
+        return null;
     }
 
     @Override
-    public void setData(Boolean data) {
-        status = data;
+    public void setData(ExpressSheet data) {
+        myEs = data;
+        Log.d("#####", data.toString());
     }
 
 
     @Override
     public void notifyDataSetChanged() {
-        if (status == true){
-            Toast.makeText(this, "拆包成功！！", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "包裹已拆包！！", Toast.LENGTH_SHORT).show();
+        if(myEsList.contains(myEs)){
+            Toast.makeText(this, "此快件已在包裹中", Toast.LENGTH_SHORT).show();
+            return ;
         }
+        myEsList.add(myEs);
+        baseFragment.RefreshList(myEsList);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 
         if(resultCode == RESULT_CANCELED) return ;
-        if (data.hasExtra("BarCode")) {
-            packageId = data.getStringExtra("BarCode");
-            Log.d("ChaiBaoActivity", packageId);
-            init();
-        }
+        if(requestCode == REQUEST_CAPTURE){
+            if (data.hasExtra("BarCode")) {
+                packageId = data.getStringExtra("BarCode");
+            }
+        } else if(requestCode == REQUEST_ADD_ES){
+                if (data.hasExtra("BarCode")) {
+                    esId = data.getStringExtra("BarCode");
+                    ExpressLoader myLoader = new ExpressLoader(this, this);
+                    myLoader.Load(esId);
+                }
         }
 
-    void MenuDisplay(int status){
+    }
+
+    /*void MenuDisplay(int status){
         action_menu_item.setVisible(true);
         action_menu_item.setEnabled(true);
         switch(status){
@@ -153,7 +175,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
                 action_menu_item.setVisible(false);
                 break;
         }
-    }
+    }*/
 
 
     private void StartCapture(){
@@ -163,10 +185,13 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         startActivityForResult(intent, REQUEST_CAPTURE);
     }
 
-    public void ChaiBao(){
-        mChaiBaoLoader = new ChaiBaoLoader(this,this);
-        mChaiBaoLoader.ChaiBao(packageId);
+    private void StartAddEs(){
+        Intent intent = new Intent();
+        intent.putExtra("Action","Captrue");
+        intent.setClass(this, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_ADD_ES);
     }
+
 
     public void init(){
         // Set up the action bar.
@@ -178,10 +203,11 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         mSectionsPagerAdapter = new SectionsPagerAdapter(
                 getSupportFragmentManager());
 
-        submitBtn = (Button) findViewById(R.id.submit_chai_bao_btn);
+        submitBtn = (Button) findViewById(R.id.submit_da_bao_btn);
+        addEsBtn = (Button) findViewById(R.id.add_express_sheet);
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.chai_bao_pager);
+        mViewPager = (ViewPager) findViewById(R.id.da_bao_pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // When swiping between different sections, select the corresponding
@@ -209,14 +235,65 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChaiBao();
+
+                DaBao();
             }
         });
+
+        addEsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StartAddEs();
+            }
+        });
+    }
+
+
+    public void DaBao(){
+        AlertDialog.Builder dialog=new AlertDialog.Builder(DaBaoActivity.this);
+        //获取AlertDialog对象
+        dialog.setTitle("警告");//设置标题
+        dialog.setMessage("确认打包吗？");//设置信息具体内容
+
+        dialog.setCancelable(false);//设置是否可取消
+        dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override//设置ok的事件
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //在此处写入ok的逻辑
+                confirmDaBao();
+            }
+        });
+        dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override//设置取消事件
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //在此写入取消的事件
+            }
+
+        });
+        dialog.show();
+
+    }
+
+    public void confirmDaBao(){
+        DaBaoLoader dbl = new DaBaoLoader(this, this);
+        dbl.DaBao(myEsList, myPackage);
     }
 
     @Override
     public void onFragmentInteraction(String id) {
 
+    }
+
+    @Override
+    public void notifyResult(Boolean b) {
+        if(b == true){
+            Toast.makeText(this, "打包成功！！", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "打包失败！！", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -234,11 +311,11 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         public Fragment getItem(int position) {
             switch(position){
                 case 0:
-                    baseFragment = ChaiBaoListFragment.newInstance(packageId);
+                    baseFragment = DaBaoListFragment.newInstance(packageId);
                     return baseFragment;
 
             }
-            return ChaiBaoListFragment.newInstance(packageId);
+            return DaBaoListFragment.newInstance(packageId);
         }
 
         @Override
@@ -251,14 +328,13 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
             Locale l = Locale.getDefault();
             switch (position) {
                 case 0:
-                    return "包裹内的快件信息".toUpperCase(l);
-
+                    return "需要打包的快件信息".toUpperCase(l);
+                case 1:
+                    return "节点信息".toUpperCase(l);
             }
             return null;
         }
     }
-
-
 
 
 
