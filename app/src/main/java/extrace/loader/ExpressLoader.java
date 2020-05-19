@@ -125,8 +125,8 @@ public class ExpressLoader extends HttpAsyncTask {
     public void Receive(String id)
     {
         ((ExTraceApplication)context.getApplication()).refresh();
-        int uid = ((ExTraceApplication)context.getApplication()).getLoginUser().getUID();
-        url += "receiveExpressSheetId/id/"+ id + "/uid/"+ uid + "?_type=json";
+        String telCode = ((ExTraceApplication)context.getApplication()).getLoginUser().getTelCode();
+        url += "receiveExpressSheetId/id/"+ id + "/telCode/"+ telCode + "?_type=json";
         try {
             execute(url, "GET");
         } catch (Exception e) {
@@ -167,5 +167,6 @@ public class ExpressLoader extends HttpAsyncTask {
             e.printStackTrace();
         }
     }
+
 
 }

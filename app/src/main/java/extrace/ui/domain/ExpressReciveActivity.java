@@ -102,8 +102,8 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         mSenderTelView.setText(es.getSender().getTelCode());
         mSenderDeptView.setText(es.getSender().getDepartment());
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date=sdf.format(es.getAccepteTime());
-        mSendTimeView.setText(date);
+        // String date=sdf.format(es.getAccepteTime());
+        // mSendTimeView.setText(date);
         mStatusView.setText(es.getStatus()+"");
 
         btnReceive.setOnClickListener(new View.OnClickListener() {
