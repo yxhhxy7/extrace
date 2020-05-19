@@ -52,7 +52,7 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
     private String packageId = null;
     private MenuItem action_menu_item;
     private TransPackage myPackage = new TransPackage();
-
+    private TextView packageView;
     private TransPackageLoader myLoader;
 
     @Override
@@ -76,10 +76,16 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
             this.finish();
         }*/
         init();
+        StartCapture();
 
     }
 
-
+    private void StartCapture(){
+        Intent intent = new Intent();
+        intent.putExtra("Action","Captrue");
+        intent.setClass(this, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_CAPTURE);
+    }
 
     @Override
     public void onTabSelected(ActionBar.Tab tab,
@@ -107,6 +113,8 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
     @Override
     public void setData(TransPackage data) {
         myPackage.setID(data.getID());
+        myPackage.setCreateTime(data.getCreateTime());
+        myPackage.setStatus(data.getStatus());
         packageId = myPackage.getID();
         Log.d("$$$$$", data.toString());
     }
@@ -118,6 +126,7 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
             Toast.makeText(this, "包裹新建成功！！", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("BarCode",myPackage);
+            Log.d("*******myPackage", myPackage.toString());
             intent.setClass(this, DaBaoActivity.class);
             startActivity(intent);
         } else {
@@ -132,8 +141,9 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
         if(resultCode == RESULT_CANCELED) return ;
         if (data.hasExtra("BarCode")) {
             packageId = data.getStringExtra("BarCode");
-            Log.d("ChaiBaoActivity", packageId);
-            init();
+            packageView.setText(packageId);
+            // Log.d("ChaiBaoActivity", packageId);
+            // init();
         }else if(requestCode == REQUEST_SOURCE_NODE){
             if(data.hasExtra("NodeInfo")){
                 TransNode tn = (TransNode)data.getSerializableExtra("NodeInfo");
@@ -184,7 +194,7 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
             return ;
         }
         myLoader = new TransPackageLoader(this,this);
-        myLoader.NewPackage();
+        myLoader.NewPackage(packageId);
     }
 
     public void init(){
@@ -198,6 +208,8 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
                 getSupportFragmentManager());
 
         submitBtn = (Button) findViewById(R.id.new_package_btn);
+
+        packageView  = (TextView) findViewById(R.id.NewPackageId);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.new_package_pager);

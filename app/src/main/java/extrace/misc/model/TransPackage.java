@@ -47,7 +47,7 @@ public class TransPackage  implements Serializable {
 	public String getORMID() {
 		return getID();
 	}
-	
+
 	public void setSourceNode(String value) {
 		this.sourceNode = value;
 	}
@@ -55,7 +55,7 @@ public class TransPackage  implements Serializable {
 	public String getSourceNode() {
 		return sourceNode;
 	}
-	
+
 	public void setTargetNode(String value) {
 		this.targetNode = value;
 	}

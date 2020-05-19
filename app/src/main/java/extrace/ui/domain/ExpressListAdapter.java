@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -118,6 +119,9 @@ public class ExpressListAdapter extends ArrayAdapter<ExpressSheet> implements ID
 			break;
 		}
 		hd.status.setText(stText);
+		if(es.getAcc2() != null && es.getAcc2().equals("-1")){
+			v.setBackgroundColor(Color.parseColor("#717171"));
+		}
 		return v;		
 	}
 
@@ -129,9 +133,9 @@ public class ExpressListAdapter extends ArrayAdapter<ExpressSheet> implements ID
 	@Override
 	public void setData(List<ExpressSheet> data) {
 		this.itemList = data;
-		if(!data.isEmpty()){
+		/*if(!data.isEmpty()){
 			Log.d("****", data.get(0).toString());
-		}
+		}*/
 	}	
 	
 	private class hold{

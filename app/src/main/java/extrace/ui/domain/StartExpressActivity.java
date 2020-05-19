@@ -631,7 +631,7 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
                                 Toast.makeText(getContext(), "请输入发件人详细地址！", Toast.LENGTH_LONG).show();
                                 return;
                             } else {
-                                receiver.setDepartment(mSndDeptView.getText().toString());
+                                sender.setDepartment(mSndDeptView.getText().toString());
                             }
 
                             nowES.setRecever(receiver);

@@ -371,6 +371,7 @@ public class MapActivity extends Activity implements IDataAdapter<List<TransPack
     @Override
     public void setData(List<TransPackage> data) {
         myRoute = (ArrayList<TransPackage>) data;
+        Log.d("**********ri", myRoute.toString());
         addressData();
     }
 

@@ -10,6 +10,7 @@ public class PackageRouteWrapper implements Serializable {
 
     private static final long serialVersionUID = -120165903841234592L;
 
+    @Expose private int uid;
     @Expose private ArrayList<String> packageId;
     @Expose private ArrayList<PackageRoute> positionInfo;
 
@@ -20,6 +21,14 @@ public class PackageRouteWrapper implements Serializable {
     public PackageRouteWrapper(ArrayList<String> packageId, ArrayList<PackageRoute> positionInfo) {
         this.packageId = packageId;
         this.positionInfo = positionInfo;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public ArrayList<String> getPackageId() {

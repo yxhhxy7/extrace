@@ -1,6 +1,7 @@
 package extrace.ui.misc;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -8,6 +9,8 @@ import extrace.loader.ChaiBaoLoader;
 import extrace.net.JsonUtils;
 import extrace.ui.domain.ExpressListFragment;
 import zxing.util.CaptureActivity;
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +19,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -39,6 +43,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
 //	public static final int INTENT_EDIT = 2;
 
     public static final int REQUEST_CAPTURE = 100;
+    public static final int REQUEST_QUERY_EXPRESS = 101;
 
     SectionsPagerAdapter mSectionsPagerAdapter;
 
@@ -47,6 +52,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
      */
     ViewPager mViewPager;
     private Button submitBtn;
+    private Button confirmExprSheetBtn;
 
     private ExpressSheet mItem = new ExpressSheet();
 
@@ -70,7 +76,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         mIntent = getIntent();
         if (mIntent.hasExtra("Action")) {
             if(mIntent.getStringExtra("Action").equals("None")){
-                StartCapture();
+                StartCapture(REQUEST_CAPTURE);
             }
             else{
                 this.setResult(RESULT_CANCELED, mIntent);
@@ -134,7 +140,11 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
             Log.d("ChaiBaoActivity", packageId);
             init();
         }
+        if(requestCode == REQUEST_QUERY_EXPRESS){
+            String id = data.getStringExtra("BarCode");
+            baseFragment.changeStatus(id);
         }
+    }
 
     void MenuDisplay(int status){
         action_menu_item.setVisible(true);
@@ -156,14 +166,39 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
     }
 
 
-    private void StartCapture(){
+    private void StartCapture(int request){
         Intent intent = new Intent();
         intent.putExtra("Action","Captrue");
         intent.setClass(this, CaptureActivity.class);
-        startActivityForResult(intent, REQUEST_CAPTURE);
+        startActivityForResult(intent, request);
     }
 
     public void ChaiBao(){
+        AlertDialog.Builder dialog=new AlertDialog.Builder(ChaiBaoActivity.this);
+        //获取AlertDialog对象
+        dialog.setTitle("警告");//设置标题
+        dialog.setMessage("确认拆包吗？");//设置信息具体内容
+
+        dialog.setCancelable(false);//设置是否可取消
+        dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override//设置ok的事件
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //在此处写入ok的逻辑
+                ConfirmChaiBao();
+            }
+        });
+        dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override//设置取消事件
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //在此写入取消的事件
+            }
+
+        });
+        dialog.show();
+
+    }
+
+    public void ConfirmChaiBao(){
         mChaiBaoLoader = new ChaiBaoLoader(this,this);
         mChaiBaoLoader.ChaiBao(packageId);
     }
@@ -179,6 +214,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
                 getSupportFragmentManager());
 
         submitBtn = (Button) findViewById(R.id.submit_chai_bao_btn);
+        confirmExprSheetBtn = (Button) findViewById(R.id.confirm_express_sheet);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.chai_bao_pager);
@@ -209,7 +245,18 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChaiBao();
+                if(baseFragment.checkStatus()){
+                    ChaiBao();
+                } else {
+                    Toast.makeText(getApplicationContext(), "还有快件未确认！!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        confirmExprSheetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StartCapture(REQUEST_QUERY_EXPRESS);
             }
         });
     }

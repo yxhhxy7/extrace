@@ -76,7 +76,7 @@ public class DaBaoActivity extends AppCompatActivity implements ActionBar.TabLis
 
         mIntent = getIntent();
         myPackage = (TransPackage) mIntent.getSerializableExtra("BarCode");
-        Log.d("^^^^^^", myPackage.toString());
+        Log.d("*******myPackage", myPackage.toString());
         packageId = myPackage.getID();
         packageIdView = findViewById(R.id.packageId);
         packageIdView.setText(" "+ packageId);
@@ -276,6 +276,7 @@ public class DaBaoActivity extends AppCompatActivity implements ActionBar.TabLis
 
     public void confirmDaBao(){
         DaBaoLoader dbl = new DaBaoLoader(this, this);
+        Log.d("*******myPackage", myPackage.toString());
         dbl.DaBao(myEsList, myPackage);
     }
 

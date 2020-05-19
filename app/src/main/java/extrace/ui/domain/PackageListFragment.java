@@ -239,6 +239,9 @@ public class PackageListFragment extends ListFragment implements IDataAdapter<Li
 
     public void uploadInfo(){
         myLoader = new ZhuanYunLoader(this, getActivity());
+		((ExTraceApplication)getActivity().getApplication()).refresh();
+		int uid = ((ExTraceApplication)getActivity().getApplication()).getLoginUser().getUID();
+		myWrapper.setUid(uid);
         myLoader.UploadPositionInfo(myWrapper);
     }
 

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import extrace.loader.ExpressListLoader;
 import extrace.misc.model.ExpressSheet;
+import extrace.net.IDataAdapter;
 import extrace.ui.main.ExTraceApplication;
 
 
@@ -152,7 +153,22 @@ public class ExpressListFragment extends ListFragment {
 			pkgId = ((ExTraceApplication)this.getActivity().getApplication()).getLoginUser().geTransPackageID();
 			break;
 		}
-		mLoader = new ExpressListLoader(mAdapter, this.getActivity());
+		mLoader = new ExpressListLoader(mAdapter, new IDataAdapter<ArrayList<ExpressSheet>>() {
+			@Override
+			public ArrayList<ExpressSheet> getData() {
+				return null;
+			}
+
+			@Override
+			public void setData(ArrayList<ExpressSheet> data) {
+
+			}
+
+			@Override
+			public void notifyDataSetChanged() {
+
+			}
+		}, this.getActivity());
 		mLoader.LoadExpressListInPackage(pkgId);
 		Log.d("我是pkgId",pkgId);
 		//mLoader.LoadExpressList();

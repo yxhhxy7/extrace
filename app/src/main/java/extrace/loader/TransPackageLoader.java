@@ -28,10 +28,12 @@ public class TransPackageLoader extends HttpAsyncTask {
 
 	@Override
 	public void onDataReceive(String class_name, String json_data) {
+		Log.d("*****package", json_data);
 		if(class_name.equals("TransPackage"))
 		{
 			TransPackage ci = JsonUtils.fromJson(json_data, new TypeToken<TransPackage>(){});
 			Log.d("packageId", ci.getID());
+			Log.d("****package", ci.toString());
 			adapter.setData(ci);
 			adapter.notifyDataSetChanged();
 		}
@@ -74,9 +76,9 @@ public class TransPackageLoader extends HttpAsyncTask {
 		}
 	}
 
-	public void NewPackage(){
+	public void NewPackage(String pid){
 		int uid = ((ExTraceApplication)context.getApplication()).getLoginUser().getUID();
-		url += "newTransPackage/"  + uid + "?_type=json";
+		url += "newTransPackage/"  + uid + "/" + pid + "?_type=json";
 		Log.d("^^^^^", url);
 		try {
 			execute(url,"GET");

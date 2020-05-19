@@ -15,10 +15,11 @@ android:orientation="vertical" >
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:textColor="#000000"
             android:paddingLeft="8dip"
             android:paddingTop="7dip"
-            android:textSize="23dip"
+            android:textSize="20dip"
             android:text="包裹ID:" />
 
         <TextView
@@ -26,9 +27,10 @@ android:orientation="vertical" >
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginLeft="8dp"
             android:textColor="#000000"
             android:paddingTop="7dip"
-            android:textSize="23dip"
+            android:textSize="20dip"
             android:text="" />
     </LinearLayout>
 

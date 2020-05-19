@@ -1,5 +1,6 @@
 package extrace.loader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -20,12 +21,14 @@ public class ExpressListLoader extends HttpAsyncTask {
 
 	String url;
 	IDataAdapter<List<ExpressSheet>> adapter;
+	IDataAdapter<ArrayList<ExpressSheet>> fragmentAdapter;
 	private Activity context;
 	
-	public ExpressListLoader(IDataAdapter<List<ExpressSheet>> adpt, Activity context) {
+	public ExpressListLoader(IDataAdapter<List<ExpressSheet>> adpt, IDataAdapter<ArrayList<ExpressSheet>> fragmentAdapter, Activity context) {
 		super(context);
 		this.context = context;
 		adapter = adpt;
+		this.fragmentAdapter = fragmentAdapter;
 		url = ((ExTraceApplication)context.getApplication()).getDomainServiceUrl();
 	}
 	
@@ -41,6 +44,7 @@ public class ExpressListLoader extends HttpAsyncTask {
 				Log.d("ExpressListLoader", e.toString());
 			}
 			adapter.setData(cstm);
+			fragmentAdapter.setData((ArrayList<ExpressSheet>) cstm);
 			adapter.notifyDataSetChanged();
 		}
 	}

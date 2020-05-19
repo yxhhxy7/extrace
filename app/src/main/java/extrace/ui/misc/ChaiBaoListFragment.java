@@ -9,14 +9,17 @@ import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import extrace.loader.ExpressListLoader;
 import extrace.misc.model.ExpressSheet;
+import extrace.net.IDataAdapter;
 import extrace.ui.domain.ExpressEditActivity;
 import extrace.ui.domain.ExpressListAdapter;
 import extrace.ui.main.ExTraceApplication;
 
 
-public class ChaiBaoListFragment extends ListFragment {
+public class ChaiBaoListFragment extends ListFragment implements IDataAdapter<ArrayList<ExpressSheet>> {
 
     private static final String ARG_EX_TYPE = "ExType";
 
@@ -25,6 +28,8 @@ public class ChaiBaoListFragment extends ListFragment {
 
     private ExpressListAdapter mAdapter;
     private ExpressListLoader mLoader;
+    private ArrayList<ExpressSheet> mEsList = new ArrayList<>();
+    private Boolean firstTime = false;
 
     Intent mIntent;
 
@@ -65,7 +70,11 @@ public class ChaiBaoListFragment extends ListFragment {
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         registerForContextMenu(getListView());
 
-        RefreshList();
+        if(!firstTime){
+            RefreshList();
+            firstTime = ! firstTime;
+        }
+
     }
 
     @Override
@@ -97,6 +106,21 @@ public class ChaiBaoListFragment extends ListFragment {
         EditExpress(mAdapter.getItem(position));
     }
 
+    @Override
+    public ArrayList<ExpressSheet> getData() {
+        return null;
+    }
+
+    @Override
+    public void setData(ArrayList<ExpressSheet> data) {
+        mEsList = data;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated to
@@ -114,9 +138,51 @@ public class ChaiBaoListFragment extends ListFragment {
     private void RefreshList()
     {
 
-        mLoader = new ExpressListLoader(mAdapter, this.getActivity());
+        mLoader = new ExpressListLoader(mAdapter, this, this.getActivity());
         mLoader.LoadExpressListInPackage( mExType);
         //mLoader.LoadExpressList();
+    }
+
+    public void changeStatus(String id){
+        boolean flag = false;
+        for(ExpressSheet es : mEsList){
+            if(es.getID().equals(id)){
+                flag = true;
+                es.setAcc2("-1");
+                Log.d("******size", mEsList.toString());
+                break;
+            }
+        }
+        if(flag == false){
+            Toast.makeText(getActivity(), "这个快件不在包裹中！", Toast.LENGTH_SHORT).show();
+        } else {
+            resetList(mEsList);
+        }
+
+    }
+
+    public boolean checkStatus(){
+        Log.d("******size", String.valueOf(mEsList.size()));
+        Log.d("******size", mEsList.toString());
+        for(ExpressSheet es : mEsList){
+            if(es.getAcc2() == null ){
+                return false;
+            }
+        }
+        for(ExpressSheet es : mEsList){
+            es.setAcc2(null);
+        }
+        return true;
+
+    }
+
+
+    public void resetList(ArrayList<ExpressSheet> mes){
+        mAdapter.setData(mes);
+        setListAdapter(mAdapter);
+
+        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        registerForContextMenu(getListView());
     }
 
     void EditExpress(ExpressSheet es)

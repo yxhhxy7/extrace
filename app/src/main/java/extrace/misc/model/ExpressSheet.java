@@ -28,6 +28,7 @@ public class ExpressSheet implements Serializable {
 	@Expose private String deliver;
 	@Expose private Date accepteTime;
 	@Expose private Date deliveTime;
+	// 揽收快递员的id
 	@Expose private String acc1;
 	@Expose private String acc2;
 	@Expose private Integer status;

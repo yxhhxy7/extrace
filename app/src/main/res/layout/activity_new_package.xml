@@ -6,6 +6,34 @@
 android:layout_height="match_parent"
 android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="8dip"
+            android:layout_marginLeft="13dp"
+            android:paddingTop="7dip"
+            android:text="包裹ID:"
+            android:textColor="@color/black"
+            android:textSize="20dip" />
+
+        <TextView
+            android:id="@+id/NewPackageId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:paddingTop="7dip"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="20dip" />
+    </LinearLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/new_package_pager"
         android:layout_width="match_parent"
