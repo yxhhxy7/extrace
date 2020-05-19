@@ -1,5 +1,6 @@
 package extrace.ui.domain;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,11 +15,16 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +42,7 @@ import extrace.ui.misc.CustomerListActivity;
 import extrace.ui.misc.RegionListActivity;
 import zxing.util.CaptureActivity;
 
-public class ExpressReciveActivity extends AppCompatActivity implements IDataAdapter<ExpressSheet>{
+public class ExpressReciveActivity extends AppCompatActivity implements IDataAdapter<ExpressSheet>, AdapterView.OnItemClickListener {
 
     private TextView mIdView;
     private TextView mSenderNameView;
@@ -58,6 +64,9 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
 
     private ExpressLoader mLoader;
 
+    private ListPopupWindow listPopupWindow;
+    private String[] products;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +75,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         mSenderNameView=findViewById(R.id.expressSndName);
         mSenderTelView=findViewById(R.id.expressSndTel);
         mSenderDeptView=findViewById(R.id.SndExpressDept);
-        mSendTimeView=findViewById(R.id.SndTime);
+        //mSendTimeView=findViewById(R.id.SndTime);
         mExpressSheetType=findViewById(R.id.ExpressSheetType);
         mExpressSheetTransFee=findViewById(R.id.ExpressSheetTransFee);
         mExpressSheetIsuFee=findViewById(R.id.ExpressSheetIsuFee);
@@ -96,8 +105,51 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
             this.setResult(RESULT_CANCELED, mIntent);
             this.finish();
         }
+        String[] products={"Camera", "Laptop", "Watch","Smartphone",
+                "Television"};
+        listPopupWindow = new ListPopupWindow(
+                ExpressReciveActivity.this);
+        listPopupWindow.setAdapter(new ArrayAdapter(
+                this,
+                R.layout.espresssheettype_list, products));
+        listPopupWindow.setAnchorView(mExpressSheetType);
+        listPopupWindow.setWidth(600);
+        listPopupWindow.setHeight(800);
+
+        listPopupWindow.setModal(true);
+        listPopupWindow.setOnItemClickListener(ExpressReciveActivity.this);
+        mExpressSheetType.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                listPopupWindow.show();
+            }
+        });
+
+
+        /*
+        mExpressSheetType.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getX() >= (mExpressSheetType.getWidth() - mExpressSheetType
+                            .getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+                        mExpressSheetType.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.pullup1), null);
+                        showListPopulWindow();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        */
+
 
         mIdView.setText(es.getID());
+        /*
         mSenderNameView.setText(es.getSender().getName());
         mSenderTelView.setText(es.getSender().getTelCode());
         mSenderDeptView.setText(es.getSender().getDepartment());
@@ -105,17 +157,86 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         String date=sdf.format(es.getAccepteTime());
         mSendTimeView.setText(date);
         mStatusView.setText(es.getStatus()+"");
+        */
+        if(es.getSender().getName()!=null){
+            mSenderNameView.setText(es.getSender().getName());
+        }else{
+            mSenderNameView.setText(" ");
+        }
+        if(es.getSender().getDepartment()!=null){
+            mSenderDeptView.setText(es.getSender().getDepartment());
+        }else{
+            mSenderDeptView.setText(" ");
+        }
+        if(es.getSender().getTelCode()!=null){
+            mSenderTelView.setText(es.getSender().getTelCode());
+        }else{
+            mSenderTelView.setText(" ");
+        }
 
+        if(es.getStatus()!=null){
+            String stText = "";
+            switch (es.getStatus()) {
+                case ExpressSheet.STATUS.STATUS_CREATED:
+                    stText = "正在创建";
+                    break;
+                case ExpressSheet.STATUS.STATUS_TRANSPORT:
+                    stText = "运送途中";
+                    break;
+                case ExpressSheet.STATUS.STATUS_DELIVERIED:
+                    stText = "已交付";
+                    break;
+            }
+            mStatusView.setText(stText);
+            //mStatusView.setText(es.getStatus()+"");
+        }else{
+            mStatusView.setText(" ");
+        }
         btnReceive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                receive();
+                //receive();
+
+                Save();
             }
         });
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view,
+                            int position, long id) {
+        String[] products={"Camera", "Laptop", "Watch","Smartphone",
+                "Television"};
+        mExpressSheetType.setText(products[position]);
+        Log.d("woshiposition",products[position]);
+        listPopupWindow.dismiss();
+    }
 
+    /*
+    private void showListPopulWindow(){
+        String[] list = { "item1", "item2", "item3", "item4" };
+        listPopupWindow = new ListPopupWindow(this);
+        listPopupWindow.setAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, list));
+        listPopupWindow.setAnchorView(mExpressSheetType);
+        listPopupWindow.setModal(true);
+        listPopupWindow.show();
+        listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mExpressSheetType.setText(list[i]);
+
+            }
+        });
+        listPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
+            @Override
+            public void onDismiss() {
+                mExpressSheetType.setCompoundDrawablesWithIntrinsicBounds(null, null, getResources().getDrawable(R.drawable.pulldown1), null);
+            }
+        });
+    }
+    */
     void Save(){
         /*mLoader = new ExpressLoader(this, this);
         mLoader.Save(mItem);*/
@@ -124,10 +245,10 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
 
             return ;
         } else {
-            es.setType(Integer.parseInt(mExpressSheetType.getText().toString()));
+           // es.setType(Integer.parseInt(mExpressSheetType.getText().toString()));
         }
 
-        if(mExpressSheetWeight.toString().equals("")){
+        if(mExpressSheetWeight.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(), "请输入快件重量！", Toast.LENGTH_LONG).show();
             return ;
         } else {
@@ -151,14 +272,14 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         }
 
 
-
+        /*
         String res = JsonUtils.toJson(es);
         Log.d("!!!!!", res);
         res = res.trim();
         mLoader = new ExpressLoader(this, this);
         mLoader.New(res);
         // Toast.makeText(getApplicationContext(), "已成功创建快递单!", Toast.LENGTH_SHORT).show();
-
+        */
     }
 
 

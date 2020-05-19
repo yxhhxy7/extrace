@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import extrace.ui.domain.ExpressDeliveActivity;
+import extrace.ui.domain.ExpressDispatchActivity;
 import extrace.ui.domain.ExpressEditActivity;
+import extrace.ui.domain.ExpressQueryActivity;
 import extrace.ui.domain.StartExpressActivity;
 import extrace.ui.misc.ChaiBaoActivity;
 import extrace.ui.misc.CustomerListActivity;
@@ -57,14 +59,14 @@ public class MainFragment  extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        StartQueryExpress();
+                        StartDispatchExpress();
                     }
                 });
         rootView.findViewById(R.id.action_ex_transfer).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        StartQueryExpress();
+                        StartDispatchExpress();
                         //StartDeliveExpress();
                     }
                 });
@@ -145,11 +147,19 @@ public class MainFragment  extends Fragment {
         startActivityForResult(intent, 0);
     }
 
+    void StartDispatchExpress()
+    {
+        Intent intent = new Intent();
+        intent.putExtra("Action","Query");
+        intent.setClass(this.getActivity(), ExpressDispatchActivity.class);
+        startActivityForResult(intent, 0);
+    }
+
     void StartQueryExpress()
     {
         Intent intent = new Intent();
         intent.putExtra("Action","Query");
-        intent.setClass(this.getActivity(), ExpressEditActivity.class);
+        intent.setClass(this.getActivity(), ExpressQueryActivity.class);
         startActivityForResult(intent, 0);
     }
 

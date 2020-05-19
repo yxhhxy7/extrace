@@ -1,5 +1,6 @@
 package extrace.ui.main;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,7 +22,7 @@ import extrace.net.CodeUtils;
 import extrace.net.IDataAdapter;
 import extrace.net.LoginDataAdapter;
 
-public class LoginActivity extends AppCompatActivity implements LoginDataAdapter<String> {
+public class LoginActivity extends /*AppCompatActivity*/ Activity implements LoginDataAdapter<String> {
 
     private Integer status = -1;
     private Button loginBtn;
