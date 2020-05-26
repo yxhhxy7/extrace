@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import extrace.loader.DaBaoLoader;
+import extrace.misc.model.CustomerInfo;
 import extrace.misc.model.TransPackage;
+import extrace.misc.model.UserInfo;
 import extrace.net.NotifyAdapter;
 import extrace.ui.domain.ExpressListFragment;
 import extrace.ui.main.MainActivity;
@@ -77,6 +79,9 @@ public class DaBaoActivity extends AppCompatActivity implements ActionBar.TabLis
         mIntent = getIntent();
         myPackage = (TransPackage) mIntent.getSerializableExtra("BarCode");
         Log.d("*******myPackage", myPackage.toString());
+
+        //packageId = "111";
+
         packageId = myPackage.getID();
         packageIdView = findViewById(R.id.packageId);
         packageIdView.setText(" "+ packageId);
@@ -137,6 +142,25 @@ public class DaBaoActivity extends AppCompatActivity implements ActionBar.TabLis
             return ;
         }
         myEsList.add(myEs);
+        /*
+        ExpressSheet es=new ExpressSheet();
+        CustomerInfo cu1=new CustomerInfo();
+        cu1.setName("苏勋");
+        cu1.setTelCode("111");
+        cu1.setDepartment("sadsd");
+        cu1.setAddress("sfs");
+        CustomerInfo cu2=new CustomerInfo();
+        cu2.setName("苏勋");
+        cu2.setTelCode("111");
+        cu2.setDepartment("sadsd");
+        cu2.setAddress("sfs");
+        es.setID("111");
+        es.setRecever(cu1);
+        es.setSender(cu2);
+        es.setStatus(1);
+        myEsList.add(es);
+
+         */
         baseFragment.RefreshList(myEsList);
     }
 
@@ -287,6 +311,7 @@ public class DaBaoActivity extends AppCompatActivity implements ActionBar.TabLis
 
     @Override
     public void notifyResult(Boolean b) {
+        Log.d("*******myPackage", myPackage.toString());
         if(b == true){
             Toast.makeText(this, "打包成功！！", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();

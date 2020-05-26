@@ -2,6 +2,7 @@ package extrace.ui.misc;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import extrace.loader.TransPackageLoader;
 import extrace.misc.model.CustomerInfo;
@@ -28,6 +31,7 @@ import extrace.misc.model.TransNode;
 import extrace.misc.model.TransPackage;
 import extrace.net.IDataAdapter;
 import extrace.ui.domain.ExpressListFragment;
+import extrace.ui.domain.ExpressReciveActivity;
 import extrace.ui.main.R;
 import zxing.util.CaptureActivity;
 
@@ -55,6 +59,7 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
     private TextView packageView;
     private TransPackageLoader myLoader;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,10 +80,37 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
             this.setResult(RESULT_CANCELED, mIntent);
             this.finish();
         }*/
+
+
+
+
         init();
+
         StartCapture();
 
+
+
     }
+
+
+
+
+/*
+    private void tiaozhuan(){
+
+        myPackage.setID(packageId);
+        Toast.makeText(this, packageId, Toast.LENGTH_SHORT).show();
+        //Log.d("ppppp",packageId);
+        Intent intent = new Intent();
+        intent.putExtra("BarCode",myPackage);
+        Log.d("*******myPackage", myPackage.toString());
+        intent.setClass(this, DaBaoActivity.class);
+        startActivity(intent);
+
+
+    }
+
+ */
 
     private void StartCapture(){
         Intent intent = new Intent();
@@ -117,21 +149,59 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
         myPackage.setStatus(data.getStatus());
         packageId = myPackage.getID();
         Log.d("$$$$$", data.toString());
+        if(myLoader.f){
+            myPackage.setSourceNode(data.getSourceNode());
+            myPackage.setTargetNode(data.getTargetNode());
+
+        }
     }
 
 
     @Override
     public void notifyDataSetChanged() {
-        if(packageId != null){
-            Toast.makeText(this, "包裹新建成功！！", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent();
-            intent.putExtra("BarCode",myPackage);
-            Log.d("*******myPackage", myPackage.toString());
-            intent.setClass(this, DaBaoActivity.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "包裹新建失败！！", Toast.LENGTH_SHORT).show();
+        if(myLoader.f){
+            if(myPackage.getStatus()==0){
+                Toast.makeText(this, "包裹已存在  请添加快件！！", Toast.LENGTH_SHORT).show();
+                myPackage.setID(packageId);
+                //Toast.makeText(this, myPackage.getSourceNode(), Toast.LENGTH_SHORT).show();
+                baseFragment.sourceNode.setText(myPackage.getSourceNode());
+                baseFragment.targetNode.setText(myPackage.getTargetNode());
+                submitBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(NewPackageActivity.this,"包裹已存在  无法新建",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                });
+                Intent intent = new Intent();
+                intent.putExtra("BarCode",myPackage);
+                Log.d("*******myPackage", myPackage.toString());
+                intent.setClass(this, DaBaoActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "包裹正在装运中！！", Toast.LENGTH_SHORT).show();
+                submitBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(NewPackageActivity.this,"包裹正在装运中",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                });
+            }
+        }else{
+            if(packageId != null){
+                Toast.makeText(this, "包裹新建成功！！", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.putExtra("BarCode",myPackage);
+                Log.d("*******myPackage", myPackage.toString());
+                intent.setClass(this, DaBaoActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "包裹新建失败！！", Toast.LENGTH_SHORT).show();
+            }
         }
+
 
     }
 
@@ -140,9 +210,10 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
 
         if(resultCode == RESULT_CANCELED) return ;
         if (data.hasExtra("BarCode")) {
+
             packageId = data.getStringExtra("BarCode");
             packageView.setText(packageId);
-            // Log.d("ChaiBaoActivity", packageId);
+            Log.d("ChaiBaoActivity", packageId);
             // init();
         }else if(requestCode == REQUEST_SOURCE_NODE){
             if(data.hasExtra("NodeInfo")){
@@ -155,6 +226,10 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
             baseFragment.targetNode.setText(tn.getNodeName());
             myPackage.setTargetNode(tn.getID());
         }
+
+        myLoader = new TransPackageLoader(this,this);
+        myLoader.getTransPackage(packageId);
+
     }
 
     void MenuDisplay(int status){
@@ -184,17 +259,22 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
     }
 
     public void NewPackage(){
-        if(baseFragment.sourceNode.getText().toString().equals("")){
-            Toast.makeText(this, "请输入源结点信息！", Toast.LENGTH_SHORT).show();
-            return ;
-        }
 
-        if(baseFragment.targetNode.getText().toString().equals("")){
-            Toast.makeText(this, "请输入目标结点信息！", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-        myLoader = new TransPackageLoader(this,this);
-        myLoader.NewPackage(packageId);
+
+
+            if(baseFragment.sourceNode.getText().toString().equals("")){
+                Toast.makeText(this, "请输入源结点信息！", Toast.LENGTH_SHORT).show();
+                return ;
+            }
+
+            if(baseFragment.targetNode.getText().toString().equals("")){
+                Toast.makeText(this, "请输入目标结点信息！", Toast.LENGTH_SHORT).show();
+                return ;
+            }
+            myLoader = new TransPackageLoader(this,this);
+            myLoader.NewPackage(packageId);
+
+
     }
 
     public void init(){
@@ -243,6 +323,7 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
                 NewPackage();
             }
         });
+
     }
 
     @Override

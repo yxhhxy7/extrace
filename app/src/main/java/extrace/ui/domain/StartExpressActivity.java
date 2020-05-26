@@ -24,9 +24,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListPopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +68,8 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
     private CustomerInfo rcvCustomer = new CustomerInfo();
     private MenuItem action_menu_item;
     private boolean new_es = false;	//新建
+
+    private ListPopupWindow listPopupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +128,28 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
             this.setResult(RESULT_CANCELED, mIntent);
             this.finish();
         }
+        /*
+        String[] products={"鞋包衣帽", "化妆品","电子数码产品",
+                "办公用品", "五金配件", "文件", "速食品", "水果", "药品", "日常生活用品", "艺术品", "其他"};
+        listPopupWindow = new ListPopupWindow(
+                StartExpressActivity.this);
+        listPopupWindow.setAdapter(new ArrayAdapter(
+                this,
+                R.layout.espresssheettype_list, products));
+        listPopupWindow.setAnchorView(externFragment.mExpSheetType);
+        listPopupWindow.setWidth(600);
+        listPopupWindow.setHeight(800);
+
+        listPopupWindow.setModal(true);
+        listPopupWindow.setOnItemClickListener(StartExpressActivity.this);
+        externFragment.mExpSheetType.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                listPopupWindow.show();
+            }
+        });
+
+         */
+
 
 
     }
@@ -310,7 +337,40 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
 
             return ;
         } else {
-            mItem.setType(Integer.parseInt(externFragment.mExpSheetType.getText().toString()));
+            //mItem.setType(Integer.parseInt(externFragment.mExpSheetType.getText().toString()));
+            int type=11;
+            if(externFragment.mExpSheetType.getText().toString().equals("鞋包衣帽")){
+                type=0;
+            }else if(externFragment.mExpSheetType.getText().toString().equals("化妆品")){
+                type=1;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("电子数码产品")){
+                type=2;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("办公用品")){
+                type=3;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("五金配件")){
+                type=4;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("文件")){
+                type=5;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("速食品")){
+                type=6;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("水果")){
+                type=7;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("药品")){
+                type=8;
+            }
+            else if(externFragment.mExpSheetType.getText().toString().equals("日常生活用品")){
+                type=9;
+            } else if(externFragment.mExpSheetType.getText().toString().equals("艺术品")) {
+                type =10;
+            }
+            mItem.setType(type);
         }
 
         if(externFragment.mExpSheetWeight.getText().toString().equals("")){
@@ -331,7 +391,7 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
             Toast.makeText(getApplicationContext(), "请输入快件状态！", Toast.LENGTH_LONG).show();
             return ;
         }else {
-            mItem.setStatus(Integer.parseInt(externFragment.mExpressSheetStatus.getText().toString()));
+            mItem.setStatus(2);
         }
 
         if(externFragment.mExpressSheetIsuFees.getText().toString().equals("")){
@@ -414,6 +474,17 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
         }
         startActivityForResult(intent, intent_code);
     }
+    /*
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        String[] products={"鞋包衣帽", "化妆品","电子数码产品",
+                "办公用品", "五金配件", "文件", "速食品", "水果", "药品", "日常生活用品", "艺术品", "其他"};
+        externFragment.mExpSheetType.setText(products[position]);
+        Log.d("woshiposition",products[position]);
+        listPopupWindow.dismiss();
+    }
+
+     */
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -719,13 +790,14 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
         }
     }
 
-    public static class ExpressEditFragment2 extends Fragment {
+    public static class ExpressEditFragment2 extends Fragment implements  AdapterView.OnItemClickListener  {
 
         private EditText mExpSheetType;
         private EditText mExpSheetFees;
         private EditText mExpSheetWeight;
-        private EditText mExpressSheetStatus;
+        private TextView mExpressSheetStatus;
         private EditText mExpressSheetIsuFees;
+        private ListPopupWindow listPopupWindow;
 
         /**
          * Returns a new instance of this fragment for the given section number.
@@ -744,9 +816,9 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_express_edit2,
+            View rootView = inflater.inflate(R.layout.fragment_express_edit3,
                     container, false);
-            mExpressSheetStatus = (EditText) rootView.findViewById(R.id.ExpressSheetStatus);
+            mExpressSheetStatus = (TextView) rootView.findViewById(R.id.ExpressSheetStatus);
             mExpSheetFees  = (EditText) rootView.findViewById(R.id.ExpressSheetTransFee);
             mExpSheetType = (EditText) rootView.findViewById(R.id.ExpressSheetType);
             mExpSheetWeight = (EditText) rootView.findViewById(R.id.ExpressSheetWeught);
@@ -756,7 +828,36 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
 //					.findViewById(R.id.section_label);
 //			textView.setText(Integer.toString(getArguments().getInt(
 //					ARG_SECTION_NUMBER)));
+
+            String[] products={"鞋包衣帽", "化妆品","电子数码产品",
+                    "办公用品", "五金配件", "文件", "速食品", "水果", "药品", "日常生活用品", "艺术品", "其他"};
+            listPopupWindow = new ListPopupWindow(
+                    rootView.getContext());
+            listPopupWindow.setAdapter(new ArrayAdapter(
+                    rootView.getContext(),
+                    R.layout.espresssheettype_list, products));
+            listPopupWindow.setAnchorView(mExpSheetType);
+            listPopupWindow.setWidth(600);
+            listPopupWindow.setHeight(800);
+
+            listPopupWindow.setModal(true);
+            listPopupWindow.setOnItemClickListener(ExpressEditFragment2.this);
+            mExpSheetType.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    listPopupWindow.show();
+                }
+            });
             return rootView;
+        }
+
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            String[] products={"鞋包衣帽", "化妆品","电子数码产品",
+                    "办公用品", "五金配件", "文件", "速食品", "水果", "药品", "日常生活用品", "艺术品", "其他"};
+            mExpSheetType.setText(products[position]);
+            Log.d("woshiposition",products[position]);
+            listPopupWindow.dismiss();
         }
     }
 

@@ -168,5 +168,16 @@ public class ExpressLoader extends HttpAsyncTask {
         }
     }
 
+    public void saveExpressSheet(ExpressSheet es)
+    {
+        String jsonObj = JsonUtils.toJson(es, true);
+        url += "saveExpressSheet";
+        try {
+            execute(url, "POST", jsonObj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

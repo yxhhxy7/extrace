@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<item android:drawable="@color/white" />-->
+    <!--因为使用最长图做适配，所以这里不会有需要填充的地方，所以上面注释掉-->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/welcome" />
+    </item>
+
+</layer-list>
+

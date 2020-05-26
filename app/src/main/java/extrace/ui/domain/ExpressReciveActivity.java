@@ -66,6 +66,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
 
     private ListPopupWindow listPopupWindow;
     private String[] products;
+    private int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,8 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
             if(mIntent.getStringExtra("Action").equals("Receive")){
                 if (mIntent.hasExtra("ExpressSheet")) {
                     es = (ExpressSheet) mIntent.getSerializableExtra("ExpressSheet");
+
+
                 } else {
                     this.setResult(RESULT_CANCELED, mIntent);
                     this.finish();
@@ -105,8 +108,8 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
             this.setResult(RESULT_CANCELED, mIntent);
             this.finish();
         }
-        String[] products={"Camera", "Laptop", "Watch","Smartphone",
-                "Television"};
+        String[] products={"鞋包衣帽", "化妆品","电子数码产品",
+                "办公用品", "五金配件", "文件", "速食品", "水果", "药品", "日常生活用品", "艺术品", "其他"};
         listPopupWindow = new ListPopupWindow(
                 ExpressReciveActivity.this);
         listPopupWindow.setAdapter(new ArrayAdapter(
@@ -198,6 +201,13 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
                 //receive();
 
                 Save();
+                if(i==1){
+                    receive();
+                    Toast.makeText(getApplicationContext(),"快件揽收成功！",Toast.LENGTH_LONG).show();
+                    String jj=JsonUtils.toJson(es, true);
+                    Log.d("揽收任务的es",jj);
+                }
+
             }
         });
     }
@@ -206,8 +216,8 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view,
                             int position, long id) {
-        String[] products={"Camera", "Laptop", "Watch","Smartphone",
-                "Television"};
+        String[] products={"鞋包衣帽", "化妆品","电子数码产品",
+                "办公用品", "五金配件", "文件", "速食品", "水果", "药品", "日常生活用品", "艺术品", "其他"};
         mExpressSheetType.setText(products[position]);
         Log.d("woshiposition",products[position]);
         listPopupWindow.dismiss();
@@ -245,7 +255,39 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
 
             return ;
         } else {
-           // es.setType(Integer.parseInt(mExpressSheetType.getText().toString()));
+            int type=11;
+            if(mExpressSheetType.getText().toString().equals("鞋包衣帽")){
+                type=0;
+            }else if(mExpressSheetType.getText().toString().equals("化妆品")){
+                type=1;
+            }
+            else if(mExpressSheetType.getText().toString().equals("电子数码产品")){
+                type=2;
+            }
+            else if(mExpressSheetType.getText().toString().equals("办公用品")){
+                type=3;
+            }
+            else if(mExpressSheetType.getText().toString().equals("五金配件")){
+                type=4;
+            }
+            else if(mExpressSheetType.getText().toString().equals("文件")){
+                type=5;
+            }
+            else if(mExpressSheetType.getText().toString().equals("速食品")){
+                type=6;
+            }
+            else if(mExpressSheetType.getText().toString().equals("水果")){
+                type=7;
+            }
+            else if(mExpressSheetType.getText().toString().equals("药品")){
+                type=8;
+            }
+            else if(mExpressSheetType.getText().toString().equals("日常生活用品")){
+                type=9;
+            } else if(mExpressSheetType.getText().toString().equals("艺术品")) {
+                type =10;
+            }
+           es.setType(type);
         }
 
         if(mExpressSheetWeight.getText().toString().equals("")){
@@ -269,6 +311,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
             return ;
         } else{
             es.setInsuFee(Float.parseFloat(mExpressSheetIsuFee.getText().toString()));
+            i=1;
         }
 
 
@@ -280,6 +323,8 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         mLoader.New(res);
         // Toast.makeText(getApplicationContext(), "已成功创建快递单!", Toast.LENGTH_SHORT).show();
         */
+        mLoader=new ExpressLoader(this,this);
+        mLoader.saveExpressSheet(es);
     }
 
 
@@ -304,8 +349,8 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
 
     @Override
     public void notifyDataSetChanged() {
-        if(expressSheet.getID()!=null){
-            Toast.makeText(getApplicationContext(),"快件已揽收完成",Toast.LENGTH_LONG).show();
+        if(expressSheet.getID()==null){
+            Toast.makeText(getApplicationContext(),"快件揽收出错！",Toast.LENGTH_LONG).show();
         }
     }
 }

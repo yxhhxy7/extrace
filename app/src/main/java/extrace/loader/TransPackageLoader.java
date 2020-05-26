@@ -18,6 +18,7 @@ public class TransPackageLoader extends HttpAsyncTask {
 	String url;
 	IDataAdapter<TransPackage> adapter;
 	private Activity context;
+	public Boolean f=false;
 	
 	public TransPackageLoader(IDataAdapter<TransPackage> adpt, Activity context) {
 		super(context);
@@ -28,6 +29,7 @@ public class TransPackageLoader extends HttpAsyncTask {
 
 	@Override
 	public void onDataReceive(String class_name, String json_data) {
+		f=false;
 		Log.d("*****package", json_data);
 		if(class_name.equals("TransPackage"))
 		{
@@ -36,6 +38,7 @@ public class TransPackageLoader extends HttpAsyncTask {
 			Log.d("****package", ci.toString());
 			adapter.setData(ci);
 			adapter.notifyDataSetChanged();
+
 		}
 		else if(class_name.equals("R_TransPackage"))		//保存完成
 		{
@@ -45,8 +48,25 @@ public class TransPackageLoader extends HttpAsyncTask {
 			adapter.notifyDataSetChanged();
 			Toast.makeText(context, "包裹信息保存完成!", Toast.LENGTH_SHORT).show();
 		}
-		else
+		else if(class_name.equals("O_TransPackage"))
 		{
+			TransPackage ci = JsonUtils.fromJson(json_data, new TypeToken<TransPackage>(){});
+			Log.d("packageId", ci.getID());
+			Log.d("****package", ci.toString());
+			adapter.setData(ci);
+			adapter.notifyDataSetChanged();
+		}
+		else if(class_name.equals("G_TransPackage"))
+		{
+			f=true;
+			TransPackage ci = JsonUtils.fromJson(json_data, new TypeToken<TransPackage>(){});
+			Log.d("packageId", ci.getID());
+			Log.d("****package", ci.toString());
+			adapter.setData(ci);
+			adapter.notifyDataSetChanged();
+		}
+		else{
+
 		}
 	}
 
@@ -86,4 +106,15 @@ public class TransPackageLoader extends HttpAsyncTask {
 			e.printStackTrace();
 		}
 	}
+
+	public void getTransPackage(String pid){
+		url += "getTransPackage/" + pid + "?_type=json";
+		try {
+			execute(url,"GET");
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+
 }
