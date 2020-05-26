@@ -16,6 +16,22 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    <style name="AppTheme.StartingWindowTheme" parent="AppTheme">
+
+            <item name="android:windowFullscreen">true</item>
+            <item name="android:windowBackground">@drawable/welcome</item>
+
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.NoActionBar.NoActionBarLaunch" >
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@drawable/welcome</item>
+    </style>
+
 
     <style name="TextTheme">
         <item name="android:layout_width">wrap_content</item>
@@ -180,6 +196,10 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">12sp</item>
         <item name="android:background">@drawable/chat_time_block</item>
+    </style>
+
+    <style name="MyStyleNoTitle">
+        <item name="android:windowNoTitle">true</item>
     </style>
 
 </resources>
