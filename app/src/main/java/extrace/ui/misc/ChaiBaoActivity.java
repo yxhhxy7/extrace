@@ -66,6 +66,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
 
     private ChaiBaoLoader mChaiBaoLoader;
     private Boolean status = null;
+    private Boolean flag=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,7 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
             this.setResult(RESULT_CANCELED, mIntent);
             this.finish();
         }
+        flag=true;
 
 
     }
@@ -138,6 +140,10 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         if (data.hasExtra("BarCode")) {
             packageId = data.getStringExtra("BarCode");
             Log.d("ChaiBaoActivity", packageId);
+            if(flag){
+                init2();
+            }
+            //init2();
             init();
         }
         if(requestCode == REQUEST_QUERY_EXPRESS){
@@ -204,6 +210,67 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
     }
 
     public void init(){
+        /*
+        // Set up the action bar.
+       final ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(
+                getSupportFragmentManager());
+
+        submitBtn = (Button) findViewById(R.id.submit_chai_bao_btn);
+        confirmExprSheetBtn = (Button) findViewById(R.id.confirm_express_sheet);
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.chai_bao_pager);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        // When swiping between different sections, select the corresponding
+        // tab. We can also use ActionBar.Tab#select() to do this if we have
+        // a reference to the Tab.
+        mViewPager
+                .setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        actionBar.setSelectedNavigationItem(position);
+                    }
+                });
+
+        // For each of the sections in the app, add a tab to the action bar.
+       // for (int i = 1; i <=mSectionsPagerAdapter.getCount(); i++) {
+            // Create a tab with text corresponding to the page title defined by
+            // the adapter. Also specify this Activity object, which implements
+            // the TabListener interface, as the callback (listener) for when
+            // this tab is selected.
+            actionBar.addTab(actionBar.newTab()
+                    .setText(mSectionsPagerAdapter.getPageTitle(0))
+                    .setTabListener(this));
+        //}
+
+         */
+
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(baseFragment.checkStatus()){
+                    ChaiBao();
+                } else {
+                    Toast.makeText(getApplicationContext(), "还有快件未确认！!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        confirmExprSheetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StartCapture(REQUEST_QUERY_EXPRESS);
+            }
+        });
+    }
+
+    void init2(){
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -232,33 +299,16 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
                 });
 
         // For each of the sections in the app, add a tab to the action bar.
-        for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter. Also specify this Activity object, which implements
-            // the TabListener interface, as the callback (listener) for when
-            // this tab is selected.
-            actionBar.addTab(actionBar.newTab()
-                    .setText(mSectionsPagerAdapter.getPageTitle(i))
-                    .setTabListener(this));
-        }
-
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(baseFragment.checkStatus()){
-                    ChaiBao();
-                } else {
-                    Toast.makeText(getApplicationContext(), "还有快件未确认！!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        confirmExprSheetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                StartCapture(REQUEST_QUERY_EXPRESS);
-            }
-        });
+        // for (int i = 1; i <=mSectionsPagerAdapter.getCount(); i++) {
+        // Create a tab with text corresponding to the page title defined by
+        // the adapter. Also specify this Activity object, which implements
+        // the TabListener interface, as the callback (listener) for when
+        // this tab is selected.
+        actionBar.addTab(actionBar.newTab()
+                .setText(mSectionsPagerAdapter.getPageTitle(0))
+                .setTabListener(this));
+        //}
+        flag=false;
     }
 
     @Override
@@ -296,11 +346,15 @@ public class ChaiBaoActivity extends AppCompatActivity implements ActionBar.TabL
         @Override
         public CharSequence getPageTitle(int position) {
             Locale l = Locale.getDefault();
+
             switch (position) {
                 case 0:
                     return "包裹内的快件信息".toUpperCase(l);
 
             }
+
+
+
             return null;
         }
     }

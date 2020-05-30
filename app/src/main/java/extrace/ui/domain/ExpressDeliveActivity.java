@@ -1,8 +1,11 @@
 package extrace.ui.domain;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +20,9 @@ import extrace.loader.ExpressLoader;
 import extrace.misc.model.CustomerInfo;
 import extrace.misc.model.ExpressSheet;
 import extrace.net.IDataAdapter;
+import extrace.net.JsonUtils;
 import extrace.ui.main.R;
+import extrace.ui.misc.DaBaoActivity;
 import zxing.util.CaptureActivity;
 
 public class ExpressDeliveActivity extends AppCompatActivity implements IDataAdapter<Boolean> {
@@ -120,29 +125,70 @@ public class ExpressDeliveActivity extends AppCompatActivity implements IDataAda
         mRcvNameView.setText(receiver.getName()+"");
         mRcvTelCodeView.setText(receiver.getTelCode()+"");
         //mRcvRegionView.setText(receiver.getRegionCode()+"");
-        mRcvAddrView.setText(receiver.getRegionString());
+        mRcvAddrView.setText(receiver.getAddress());
         mRcvDptView.setText(receiver.getDepartment());
         mSndNameView.setText(sender.getName()+"");
         mSndTelCodeView.setText(sender.getTelCode()+"");
        // mSndRegionView.setText(sender.getRegionString()+"");
-        mSndAddrView.setText(sender.getRegionString());
+        mSndAddrView.setText(sender.getAddress());
         mSndDptView.setText(sender.getDepartment());
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date=sdf.format(es.getAccepteTime());
 
         mRcvTimeView.setText(date);
 
-
-        mStatusView.setText(es.getStatus()+"");
+        String stText = "";
+        switch(es.getStatus()){
+            case ExpressSheet.STATUS.STATUS_CREATED:
+                stText = "正在创建";
+                break;
+            //case ExpressSheet.STATUS.STATUS_TRANSPORT:
+            //  stText = "运送途中";
+            //break;
+            case ExpressSheet.STATUS.STATUS_DELIVERIED:
+                stText = "运送中";
+                break;
+            case 3:
+                stText = "派件中";
+                break;
+            case 4:
+                stText = "已送达";
+                break;
+        }
+        mStatusView.setText(stText);
+        //mStatusView.setText(es.getStatus()+"");
         //mLoader=new ExpressDeliveLoader(this,this);
 
 
         mbtnDelive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder dialog=new AlertDialog.Builder(ExpressDeliveActivity.this);
+                //获取AlertDialog对象
+                dialog.setTitle("警告");//设置标题
+                dialog.setMessage("确认送达吗？");//设置信息具体内容
+
+                dialog.setCancelable(false);//设置是否可取消
+                dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override//设置ok的事件
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //在此处写入ok的逻辑
+                        completeDispatch();
+                        String jj= JsonUtils.toJson(es, true);
+                        Log.d("派送任务的es",jj);
+                    }
+                });
+                dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override//设置取消事件
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //在此写入取消的事件
+                    }
+
+                });
+                dialog.show();
                 //mLoader=new ExpressLoader(IDataAdapter<boolean>,A);
                 //mLoader=new ExpressDeliveLoader(this,this);
-                completeDispatch();
+
                 //Toast.makeText(getApplicationContext(), "您已完成派送!", Toast.LENGTH_LONG).show();
             }
         });

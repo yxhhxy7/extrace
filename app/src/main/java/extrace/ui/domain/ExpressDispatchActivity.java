@@ -1,5 +1,6 @@
 package extrace.ui.domain;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -29,6 +31,7 @@ import extrace.misc.model.ExpressSheet;
 import extrace.net.IDataAdapter;
 import extrace.ui.main.R;
 import extrace.ui.misc.CustomerListActivity;
+import extrace.ui.misc.DaBaoActivity;
 import zxing.util.CaptureActivity;
 
 public class ExpressDispatchActivity extends AppCompatActivity implements ActionBar.TabListener, IDataAdapter<ExpressSheet> {
@@ -415,6 +418,7 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
         private Button mbtnDelive;
         private ExpressSheet expressSheet;
         private ExpressLoader mLoader;
+        private AlertDialog.Builder dialog;
 
         public static ExpressEditFragment1 newInstance() {
             ExpressEditFragment1 fragment = new ExpressEditFragment1();
@@ -458,6 +462,7 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
                             ((ExpressDispatchActivity) getActivity()).StartCapture();
                         }
                     });
+            /*
             mbtnRcv = (ImageView) rootView.findViewById(R.id.action_ex_rcv_icon);
             mbtnRcv.setOnClickListener(
                     new View.OnClickListener() {
@@ -475,6 +480,8 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
                         }
                     });
 
+             */
+
             mbtnDelive.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -483,6 +490,7 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
                     //Toast.makeText(getActivity(),"准备派送",Toast.LENGTH_LONG).show();
                 }
             });
+            dialog=new AlertDialog.Builder(rootView.getContext());
             return rootView;
         }
 
@@ -505,18 +513,24 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
                 case ExpressSheet.STATUS.STATUS_CREATED:
                     stText = "正在创建";
                     break;
-                case ExpressSheet.STATUS.STATUS_TRANSPORT:
-                    stText = "运送途中";
-                    break;
+                //case ExpressSheet.STATUS.STATUS_TRANSPORT:
+                  //  stText = "运送途中";
+                    //break;
                 case ExpressSheet.STATUS.STATUS_DELIVERIED:
-                    stText = "已交付";
+                    stText = "运送中";
+                    break;
+                case 3:
+                    stText = "派件中";
+                    break;
+                case 4:
+                    stText = "已送达";
                     break;
             }
             mStatusView.setText(stText);
-            displayBtn(es);
+            //displayBtn(es);
             readyDispatch(es);
         }
-
+        /*
         void displayBtn(ExpressSheet es){	//按钮状态控制
             if(es.getStatus() == ExpressSheet.STATUS.STATUS_CREATED){
                 mbtnRcv.setVisibility(View.VISIBLE);
@@ -527,6 +541,8 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
                 mbtnSnd.setVisibility(View.INVISIBLE);
             }
         }
+
+         */
 
         void displayRcv(ExpressSheet es){
             if(es.getRecever() != null){
@@ -596,7 +612,29 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
             mbtnDelive.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mLoader.ReadyDispatch(es.getID());
+
+                    //AlertDialog.Builder dialog=new AlertDialog.Builder(ExpressDispatchActivity);
+                    //获取AlertDialog对象
+                    dialog.setTitle("警告");//设置标题
+                    dialog.setMessage("确认派送吗？");//设置信息具体内容
+
+                    dialog.setCancelable(false);//设置是否可取消
+                    dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                        @Override//设置ok的事件
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //在此处写入ok的逻辑
+                            mLoader.ReadyDispatch(es.getID());
+                        }
+                    });
+                    dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                        @Override//设置取消事件
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //在此写入取消的事件
+                        }
+
+                    });
+                    dialog.show();
+
                     //Toast.makeText(getActivity(),es.getID(),Toast.LENGTH_SHORT).show();
                 }
             });
@@ -604,6 +642,8 @@ public class ExpressDispatchActivity extends AppCompatActivity implements Action
 
         }
     }
+
+
 
     public static class ExpressEditFragment2 extends Fragment {
 

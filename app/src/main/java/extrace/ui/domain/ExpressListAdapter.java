@@ -108,15 +108,21 @@ public class ExpressListAdapter extends ArrayAdapter<ExpressSheet> implements ID
 
 		String stText = "";
 		switch(es.getStatus()){
-		case ExpressSheet.STATUS.STATUS_CREATED:
-			stText = "正在创建";
-			break;
-		case ExpressSheet.STATUS.STATUS_TRANSPORT:
-			stText = "运送途中";
-			break;
-		case ExpressSheet.STATUS.STATUS_DELIVERIED:
-			stText = "已交付";
-			break;
+			case ExpressSheet.STATUS.STATUS_CREATED:
+				stText = "正在创建";
+				break;
+			//case ExpressSheet.STATUS.STATUS_TRANSPORT:
+			//  stText = "运送途中";
+			//break;
+			case ExpressSheet.STATUS.STATUS_DELIVERIED:
+				stText = "运送中";
+				break;
+			case 3:
+				stText = "派件中";
+				break;
+			case 4:
+				stText = "已送达";
+				break;
 		}
 		hd.status.setText(stText);
 		if(es.getAcc2() != null && es.getAcc2().equals("-1")){

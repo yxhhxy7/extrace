@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -19,7 +21,7 @@ import extrace.ui.domain.ExpressListAdapter;
 import extrace.ui.main.ExTraceApplication;
 
 
-public class ChaiBaoListFragment extends ListFragment implements IDataAdapter<ArrayList<ExpressSheet>> {
+public class ChaiBaoListFragment extends ListFragment implements IDataAdapter<ArrayList<ExpressSheet>>{
 
     private static final String ARG_EX_TYPE = "ExType";
 
@@ -55,6 +57,7 @@ public class ChaiBaoListFragment extends ListFragment implements IDataAdapter<Ar
 
     @Override public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
 
         if (getArguments() != null) {	//另一种读出传入参数的方式
             mExType = getArguments().getString(ARG_EX_TYPE);
@@ -120,6 +123,8 @@ public class ChaiBaoListFragment extends ListFragment implements IDataAdapter<Ar
     public void notifyDataSetChanged() {
 
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

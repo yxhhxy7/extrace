@@ -391,7 +391,7 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
             Toast.makeText(getApplicationContext(), "请输入快件状态！", Toast.LENGTH_LONG).show();
             return ;
         }else {
-            mItem.setStatus(2);
+            mItem.setStatus(0);
         }
 
         if(externFragment.mExpressSheetIsuFees.getText().toString().equals("")){
@@ -587,7 +587,7 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
 
             mRcvTimeView = (TextView) rootView.findViewById(R.id.CreateExpressAccTime);
             mSndTimeView = (TextView) rootView.findViewById(R.id.CreateExpressDlvTime);
-
+            /*
             getRecevierAddr = (ImageView) rootView.findViewById(R.id.find_receiver_addr);
             getSenderAddr = (ImageView) rootView.findViewById(R.id.find_sender_addr);
 
@@ -612,6 +612,8 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
                         }
                     }
             );
+
+             */
 
             mbtnCapture = (ImageView) rootView.findViewById(R.id.create_action_ex_capture_icon);
             mbtnCapture.setOnClickListener(
@@ -737,11 +739,17 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
                 case ExpressSheet.STATUS.STATUS_CREATED:
                     stText = "正在创建";
                     break;
-                case ExpressSheet.STATUS.STATUS_TRANSPORT:
-                    stText = "运送途中";
-                    break;
+                //case ExpressSheet.STATUS.STATUS_TRANSPORT:
+                //  stText = "运送途中";
+                //break;
                 case ExpressSheet.STATUS.STATUS_DELIVERIED:
-                    stText = "已交付";
+                    stText = "运送中";
+                    break;
+                case 3:
+                    stText = "派件中";
+                    break;
+                case 4:
+                    stText = "已送达";
                     break;
             }
             displayBtn(es);

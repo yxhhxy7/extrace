@@ -457,7 +457,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			mStatusView =  (TextView) rootView.findViewById(R.id.expressStatus);
 			
 			mbtnCapture = (ImageView) rootView.findViewById(R.id.action_ex_capture_icon);
-			mbtnDelive=rootView.findViewById(R.id.btnDelivry);
+			//mbtnDelive=rootView.findViewById(R.id.btnDelivry);
 			mbtnCapture.setOnClickListener(
 					new View.OnClickListener() {
 						@Override
@@ -465,6 +465,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 							((ExpressEditActivity) getActivity()).StartCapture();
 						}
 					});
+			/*
 			mbtnRcv = (ImageView) rootView.findViewById(R.id.action_ex_rcv_icon);
 			mbtnRcv.setOnClickListener(
 					new View.OnClickListener() {
@@ -482,6 +483,8 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 						}
 					});
 
+			 */
+			/*
 			mbtnDelive.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -490,6 +493,8 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 					//Toast.makeText(getActivity(),"准备派送",Toast.LENGTH_LONG).show();
 				}
 			});
+
+			 */
 			return rootView;
 		}
 		
@@ -509,21 +514,27 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 
 			String stText = "";
 			switch(es.getStatus()){
-			case ExpressSheet.STATUS.STATUS_CREATED:
-				stText = "正在创建";
-				break;
-			case ExpressSheet.STATUS.STATUS_TRANSPORT:
-				stText = "运送途中";
-				break;
-			case ExpressSheet.STATUS.STATUS_DELIVERIED:
-				stText = "已交付";
-				break;
+				case ExpressSheet.STATUS.STATUS_CREATED:
+					stText = "正在创建";
+					break;
+				//case ExpressSheet.STATUS.STATUS_TRANSPORT:
+				//  stText = "运送途中";
+				//break;
+				case ExpressSheet.STATUS.STATUS_DELIVERIED:
+					stText = "运送中";
+					break;
+				case 3:
+					stText = "派件中";
+					break;
+                case 4:
+                    stText = "已送达";
+                    break;
 			}
 			mStatusView.setText(stText);
-			displayBtn(es);
-			readyDispatch(es);
+			//displayBtn(es);
+			//readyDispatch(es);
 		}
-		
+		/*
 		void displayBtn(ExpressSheet es){	//按钮状态控制
 			if(es.getStatus() == ExpressSheet.STATUS.STATUS_CREATED){
 				mbtnRcv.setVisibility(View.VISIBLE);
@@ -534,6 +545,8 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				mbtnSnd.setVisibility(View.INVISIBLE);
 			}
 		}
+
+		 */
 
 		void displayRcv(ExpressSheet es){
 			if(es.getRecever() != null){
@@ -655,12 +668,8 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 
 
 		void disPlayExetrn(ExpressSheet es) {
-			String Type = es.getType() + "";
-			if(Type.equals("0")){
-				mTypeView.setText("普通快件");
-			}else if(Type.equals("1")){
-				mTypeView.setText("加急快件");
-			}
+			int Type = es.getType();
+			setType(Type);
 			String weight = es.getWeight() + "";
 			mWeightView.setText(weight);
 			String TransFee = es.getTranFee() + "";
@@ -669,6 +678,45 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 			mIsuFeeView.setText(IsuFee);
 		}
 
+		void setType(int i){
+			if(i==0){
+				mTypeView.setText("鞋包衣帽");
+			}
+			else if(i==1){
+				mTypeView.setText("化妆品");
+			}
+			else if(i==2){
+				mTypeView.setText("电子数码产品");
+			}
+			else if(i==3){
+				mTypeView.setText("办公用品");
+			}
+			else if(i==4){
+				mTypeView.setText("五金配件");
+			}
+			else if(i==5){
+				mTypeView.setText("文件");
+			}
+			else if(i==6){
+				mTypeView.setText("速食品");
+			}
+			else if(i==7){
+				mTypeView.setText("水果");
+			}
+			else if(i==8){
+				mTypeView.setText("药品");
+			}
+			else if(i==9){
+				mTypeView.setText("日常生活用品");
+			}
+			else if(i==10){
+				mTypeView.setText("艺术品");
+			}
+			else if(i==11){
+				mTypeView.setText("其他");
+			}
+
+		}
 
 		void RefreshUI(ExpressSheet es) {
 			disPlayExetrn(es);
@@ -679,11 +727,14 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 				case ExpressSheet.STATUS.STATUS_CREATED:
 					stText = "正在创建";
 					break;
-				case ExpressSheet.STATUS.STATUS_TRANSPORT:
-					stText = "运送途中";
-					break;
+				//case ExpressSheet.STATUS.STATUS_TRANSPORT:
+				//  stText = "运送途中";
+				//break;
 				case ExpressSheet.STATUS.STATUS_DELIVERIED:
-					stText = "已交付";
+					stText = "运送中";
+					break;
+				case 3:
+					stText = "派件中";
 					break;
 			}
 			mStatusView.setText(stText);

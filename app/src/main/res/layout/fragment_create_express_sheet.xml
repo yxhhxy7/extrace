@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="15dip"
             android:paddingBottom="4dip"
 
             >
@@ -73,7 +73,7 @@
             <EditText
                 android:id="@+id/CreateExpressRcvName"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:gravity="left"
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="8dip"
             android:paddingBottom="4dip">
 
             <TextView
@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="8dip"
             android:paddingBottom="4dip">
 
             <TextView
@@ -146,23 +146,15 @@
             <EditText
                 android:id="@+id/CreateExpressRcvAddr"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:background="@null"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:minLines="2"
+                android:gravity="left"
                 android:textColor="@color/black"
-                android:textSize="15dip"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/find_receiver_addr"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/find_more_friend_photograph_icon" />
+                android:textSize="16dip"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:background="@null" />
 
 
         </LinearLayout>
@@ -172,7 +164,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="8dip"
             android:paddingBottom="4dip">
 
 
@@ -188,16 +180,15 @@
             <EditText
                 android:id="@+id/CreateRcvExpressDept"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:background="@null"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:minLines="2"
+                android:gravity="left"
                 android:textColor="@color/black"
-                android:textSize="15dip"
-                android:textStyle="bold"  />
+                android:textSize="16dip"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:background="@null"  />
         </LinearLayout>
 
         <LinearLayout
@@ -205,7 +196,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="35dip"
             android:paddingBottom="4dip">
 
             <TextView
@@ -220,7 +211,7 @@
             <EditText
                 android:id="@+id/CreateExpressSndName"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
                 android:gravity="left"
@@ -244,7 +235,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="8dip"
             android:paddingBottom="4dip">
 
             <TextView
@@ -277,7 +268,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="8dip"
             android:paddingBottom="4dip">
 
             <TextView
@@ -292,23 +283,17 @@
             <EditText
                 android:id="@+id/CreateExpressSndAddr"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:background="@null"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:minLines="2"
+                android:gravity="left"
                 android:textColor="@color/black"
                 android:textSize="16dip"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:inputType="number"
+                android:background="@null"/>
 
-            <ImageView
-                android:id="@+id/find_sender_addr"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/find_more_friend_photograph_icon" />
+
 
 
         </LinearLayout>
@@ -318,7 +303,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="8dip"
             android:paddingBottom="4dip">
 
 
@@ -334,16 +319,15 @@
             <EditText
                 android:id="@+id/CreateSndExpressDept"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:background="@null"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:minLines="2"
+                android:gravity="left"
                 android:textColor="@color/black"
-                android:textSize="15dip"
-                android:textStyle="bold"  />
+                android:textSize="16dip"
+                android:textStyle="bold"
+                android:inputType="number"
+                android:background="@null"  />
         </LinearLayout>
 
         <LinearLayout
@@ -351,7 +335,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="30dip"
             android:paddingBottom="4dip">
 
             <TextView
@@ -380,7 +364,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="8dip"
             android:paddingBottom="4dip">
 
             <TextView
@@ -408,7 +392,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="5dip"
-            android:paddingTop="4dip"
+            android:paddingTop="30dip"
             android:paddingBottom="4dip"/>
 
 

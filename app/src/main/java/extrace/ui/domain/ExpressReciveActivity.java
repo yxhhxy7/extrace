@@ -1,6 +1,7 @@
 package extrace.ui.domain;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -39,6 +41,7 @@ import extrace.net.IDataAdapter;
 import extrace.net.JsonUtils;
 import extrace.ui.main.R;
 import extrace.ui.misc.CustomerListActivity;
+import extrace.ui.misc.DaBaoActivity;
 import extrace.ui.misc.RegionListActivity;
 import zxing.util.CaptureActivity;
 
@@ -54,6 +57,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
     private EditText mExpressSheetWeight;
     private EditText mExpressSheetTransFee;
     private EditText mExpressSheetIsuFee;
+    private TextView mRcvTimeView;
     private Button btnReceive;
 
     private Intent mIntent;
@@ -66,7 +70,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
 
     private ListPopupWindow listPopupWindow;
     private String[] products;
-    private int i=0;
+    private String m=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +85,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         mExpressSheetTransFee=findViewById(R.id.ExpressSheetTransFee);
         mExpressSheetIsuFee=findViewById(R.id.ExpressSheetIsuFee);
         mExpressSheetWeight=findViewById(R.id.ExpressSheetWeught);
+        mRcvTimeView = findViewById(R.id.expressAccTime);
         mStatusView=findViewById(R.id.ExpressSheetStatus);
         btnReceive=findViewById(R.id.btnReceive);
 
@@ -150,7 +155,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         });
         */
 
-
+        mRcvTimeView.setText((DateFormat.format("yyyy-MM-dd hh:mm:ss", new Date())));
         mIdView.setText(es.getID());
         /*
         mSenderNameView.setText(es.getSender().getName());
@@ -161,6 +166,7 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         // mSendTimeView.setText(date);
         mStatusView.setText(es.getStatus()+"");
         */
+        setType(es.getType());
         if(es.getSender().getName()!=null){
             mSenderNameView.setText(es.getSender().getName());
         }else{
@@ -176,37 +182,71 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         }else{
             mSenderTelView.setText(" ");
         }
-
+        /*
         if(es.getStatus()!=null){
             String stText = "";
             switch (es.getStatus()) {
                 case ExpressSheet.STATUS.STATUS_CREATED:
                     stText = "正在创建";
                     break;
-                case ExpressSheet.STATUS.STATUS_TRANSPORT:
-                    stText = "运送途中";
-                    break;
+                //case ExpressSheet.STATUS.STATUS_TRANSPORT:
+                //  stText = "运送途中";
+                //break;
                 case ExpressSheet.STATUS.STATUS_DELIVERIED:
-                    stText = "已交付";
+                    stText = "运送中";
+                    break;
+                case 3:
+                    stText = "派件中";
                     break;
             }
             mStatusView.setText(stText);
+
+
             //mStatusView.setText(es.getStatus()+"");
         }else{
             mStatusView.setText(" ");
         }
+
+         */
         btnReceive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //receive();
+                eSave();
+             if(m=="填写完整")   {
+                 AlertDialog.Builder dialog=new AlertDialog.Builder(ExpressReciveActivity.this);
+                 //获取AlertDialog对象
+                 dialog.setTitle("警告");//设置标题
+                 dialog.setMessage("确认揽收吗？");//设置信息具体内容
 
-                Save();
-                if(i==1){
-                    receive();
-                    Toast.makeText(getApplicationContext(),"快件揽收成功！",Toast.LENGTH_LONG).show();
-                    String jj=JsonUtils.toJson(es, true);
-                    Log.d("揽收任务的es",jj);
-                }
+                 dialog.setCancelable(false);//设置是否可取消
+                 dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                     @Override//设置ok的事件
+                     public void onClick(DialogInterface dialogInterface, int i) {
+                         //在此处写入ok的逻辑
+                         Save();
+                         String jj=JsonUtils.toJson(es, true);
+                         Log.d("揽收任务的es",jj);
+                         if(m=="填写完整"){
+                             receive();
+                             Toast.makeText(getApplicationContext(),"快件揽收成功！",Toast.LENGTH_LONG).show();
+
+                         }
+                     }
+                 });
+                 dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                     @Override//设置取消事件
+                     public void onClick(DialogInterface dialogInterface, int i) {
+                         //在此写入取消的事件
+                     }
+
+                 });
+                 dialog.show();
+             }
+
+
+
+
 
             }
         });
@@ -247,9 +287,12 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
         });
     }
     */
-    void Save(){
-        /*mLoader = new ExpressLoader(this, this);
-        mLoader.Save(mItem);*/
+    void eSave(){
+        try{
+            es.setAccepteTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(mRcvTimeView.getText().toString()));
+        }catch (Exception e){
+             e.printStackTrace();
+        }
         if(mExpressSheetType.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(), "请输入快件类型！", Toast.LENGTH_LONG).show();
 
@@ -287,14 +330,14 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
             } else if(mExpressSheetType.getText().toString().equals("艺术品")) {
                 type =10;
             }
-           es.setType(type);
+            es.setType(type);
         }
 
         if(mExpressSheetWeight.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(), "请输入快件重量！", Toast.LENGTH_LONG).show();
             return ;
         } else {
-           es.setWeight(Float.parseFloat(mExpressSheetWeight.getText().toString()));
+            es.setWeight(Float.parseFloat(mExpressSheetWeight.getText().toString()));
         }
 
         if(mExpressSheetTransFee.getText().toString().equals("")){
@@ -311,8 +354,21 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
             return ;
         } else{
             es.setInsuFee(Float.parseFloat(mExpressSheetIsuFee.getText().toString()));
-            i=1;
+            m="填写完整";
         }
+    }
+
+    void Save(){
+        /*mLoader = new ExpressLoader(this, this);
+        mLoader.Save(mItem);*/
+//        try{
+//            es.setAccepteTime(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(mRcvTimeView.getText().toString()));
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+
+
+
 
 
         /*
@@ -328,7 +384,45 @@ public class ExpressReciveActivity extends AppCompatActivity implements IDataAda
     }
 
 
+    void setType(int i){
+        if(i==0){
+            mExpressSheetType.setText("鞋包衣帽");
+        }
+        else if(i==1){
+            mExpressSheetType.setText("化妆品");
+        }
+        else if(i==2){
+            mExpressSheetType.setText("电子数码产品");
+        }
+        else if(i==3){
+            mExpressSheetType.setText("办公用品");
+        }
+        else if(i==4){
+            mExpressSheetType.setText("五金配件");
+        }
+        else if(i==5){
+            mExpressSheetType.setText("文件");
+        }
+        else if(i==6){
+            mExpressSheetType.setText("速食品");
+        }
+        else if(i==7){
+            mExpressSheetType.setText("水果");
+        }
+        else if(i==8){
+            mExpressSheetType.setText("药品");
+        }
+        else if(i==9){
+            mExpressSheetType.setText("日常生活用品");
+        }
+        else if(i==10){
+            mExpressSheetType.setText("艺术品");
+        }
+        else if(i==11){
+            mExpressSheetType.setText("其他");
+        }
 
+    }
 
 
     void receive(){

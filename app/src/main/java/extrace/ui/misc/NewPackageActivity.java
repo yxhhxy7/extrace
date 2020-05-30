@@ -1,5 +1,6 @@
 package extrace.ui.misc;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -160,7 +162,54 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
     @Override
     public void notifyDataSetChanged() {
         if(myLoader.f){
+
+            //Toast.makeText(this, "包裹已存在  请添加快件！！", Toast.LENGTH_SHORT).show();
+            myPackage.setID(packageId);
+            //Toast.makeText(this, myPackage.getSourceNode(), Toast.LENGTH_SHORT).show();
+            baseFragment.sourceNode.setText(myPackage.getSourceNode());
+            baseFragment.targetNode.setText(myPackage.getTargetNode());
+            Log.d("*******myPackage2", myPackage.toString());
+
             if(myPackage.getStatus()==0){
+
+                submitBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(NewPackageActivity.this,"包裹已存在  无法新建",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                });
+
+                AlertDialog.Builder dialog=new AlertDialog.Builder(NewPackageActivity.this);
+                //获取AlertDialog对象
+                dialog.setTitle("警告");//设置标题
+                dialog.setMessage("包裹已存在 是否继续添加快件？");//设置信息具体内容
+
+                dialog.setCancelable(false);//设置是否可取消
+                dialog.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override//设置ok的事件
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //在此处写入ok的逻辑
+
+
+
+                        Intent intent = new Intent();
+                        intent.putExtra("BarCode",myPackage);
+                        Log.d("*******myPackage", myPackage.toString());
+                        intent.setClass(NewPackageActivity.this, DaBaoActivity.class);
+                        startActivity(intent);
+
+                    }
+                });
+                dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override//设置取消事件
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //在此写入取消的事件
+                    }
+
+                });
+                dialog.show();
+                /*
                 Toast.makeText(this, "包裹已存在  请添加快件！！", Toast.LENGTH_SHORT).show();
                 myPackage.setID(packageId);
                 //Toast.makeText(this, myPackage.getSourceNode(), Toast.LENGTH_SHORT).show();
@@ -178,9 +227,11 @@ public class NewPackageActivity extends AppCompatActivity implements ActionBar.T
                 Log.d("*******myPackage", myPackage.toString());
                 intent.setClass(this, DaBaoActivity.class);
                 startActivity(intent);
+
+                 */
             }
             else{
-                Toast.makeText(this, "包裹正在装运中！！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "包裹无法添加快件！！", Toast.LENGTH_SHORT).show();
                 submitBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
