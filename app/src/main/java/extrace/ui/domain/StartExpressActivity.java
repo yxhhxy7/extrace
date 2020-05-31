@@ -613,7 +613,7 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
                     }
             );
 
-             */
+
 
             mbtnCapture = (ImageView) rootView.findViewById(R.id.create_action_ex_capture_icon);
             mbtnCapture.setOnClickListener(
@@ -623,6 +623,8 @@ public class StartExpressActivity extends AppCompatActivity implements ActionBar
                             ((StartExpressActivity) getActivity()).StartCapture();
                         }
                     });
+
+             */
             mbtnRcv = (ImageView) rootView.findViewById(R.id.create_action_ex_rcv_icon);
             mbtnRcv.setOnClickListener(
                     new View.OnClickListener() {

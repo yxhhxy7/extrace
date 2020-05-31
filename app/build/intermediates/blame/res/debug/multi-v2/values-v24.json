@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\ExtraceIm3\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
+            "outputFile": "D:\\extrace\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-2\\files-2.1\\264625113874c2fcd52cbd610de3bd50\\appcompat-v7-26.1.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\asus\\.gradle\\caches\\transforms-2\\files-2.1\\e0769e30a526054eecf0e15b46be5f58\\appcompat-v7-26.1.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7",
                         "startColumns": "4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-2\\files-2.1\\39e0d5a76a9b0369d1bd0266b1c58138\\support-media-compat-26.1.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\asus\\.gradle\\caches\\transforms-2\\files-2.1\\0c891e22e450ffe92582d20726654cba\\support-media-compat-26.1.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

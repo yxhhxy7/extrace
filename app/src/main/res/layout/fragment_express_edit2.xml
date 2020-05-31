@@ -1,133 +1,167 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="20dp"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical"
     tools:context="extrace.ui.domain.ExpressEditActivity$ExpressEditFragment2">
 
-    <LinearLayout
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
+
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="运单信息:"
+        android:textSize="22dp"
+        android:paddingBottom="30dp"/>
+
+    <LinearLayout
+
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        >
+        android:paddingLeft="5dp"
+        android:background="@drawable/edbk">
 
         <TextView
-            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="快件类型:"
-            android:textColor="#000000"
-            android:textSize="16dip" />
-
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/ExpressSheetType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="20dp"
+            android:textColor="#03070E"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:hint="  请选择快件类型"
+            android:gravity="center"/>
+
+
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:paddingTop="3px">
+        android:layout_marginTop="30dp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/edbk">
 
         <TextView
-            android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="重量(千克)："
-            android:textColor="#000000"
-            android:textSize="16dip" />
-
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/ExpressSheetWeught"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            android:ems="10"
-            android:inputType="numberDecimal" />
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:textColor="#03070E"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:hint="  请输入快递重量"
+            android:gravity="center"/>
+
+
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/line3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line2"
-        android:orientation="horizontal">
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/edbk">
 
         <TextView
-            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="快递费用(元)："
-            android:textColor="#000000"
-            android:textSize="16dip" />
-
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/ExpressSheetTransFee"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
-    </LinearLayout>
+            android:layout_height="40dp"
+            android:textSize="20dp"
+            android:textColor="#03070E"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:hint="  请输入快递费用"
+            android:gravity="center"/>
 
+
+
+    </LinearLayout>
     <LinearLayout
-        android:id="@+id/line4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line3"
-        android:orientation="horizontal">
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="5dp"
+        android:background="@drawable/edbk">
 
         <TextView
-            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="保险金(元)："
-            android:textColor="#000000"
-            android:textSize="16dip" />
-
+            android:textSize="20dp"
+            android:layout_gravity="center"/>
         <EditText
             android:id="@+id/ExpressSheetIsuFee"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal" />
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:textColor="#03070E"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:hint="  请输入保险金额"
+            android:gravity="center"/>
+
+
+
     </LinearLayout>
 
+
     <LinearLayout
-        android:id="@+id/line5"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line4"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="20dp">
 
         <TextView
-            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="状态："
-            android:textColor="#000000"
-            android:textSize="16dip" />
-
+            android:text="状态:"
+            android:textSize="20dp"/>
         <EditText
             android:id="@+id/ExpressSheetStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:paddingLeft="100dp"
+            android:textSize="20dp"
+            android:textColor="#03070E"
+            android:background="@null"/>
+
 
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

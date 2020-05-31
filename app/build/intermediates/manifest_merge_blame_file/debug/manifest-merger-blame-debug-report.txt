@@ -6,173 +6,310 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="15"
-8-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml
+8-->D:\extrace\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="26" />
-9-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml
+9-->D:\extrace\app\src\main\AndroidManifest.xml
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:7:5-67
-11-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:7:22-64
+11-->D:\extrace\app\src\main\AndroidManifest.xml:7:5-67
+11-->D:\extrace\app\src\main\AndroidManifest.xml:7:22-64
 12    <uses-permission android:name="android.permission.CAMERA" />
-12-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:8:5-65
-12-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:8:22-62
-13    <uses-permission android:name="android.permission.VIBRATE" />
-13-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:9:5-66
-13-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:9:22-63
-14    <uses-permission android:name="android.permission.FLASHLIGHT" />
-14-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:10:5-69
-14-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:10:22-66
-15    <uses-permission android:name="android.permission.READ_CONTACTS" />
-15-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:11:5-72
-15-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:11:22-69
-16
-17    <application
-17-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:13:5-85:19
-18        android:name="extrace.ui.main.ExTraceApplication"
-18-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:14:9-58
-19        android:allowBackup="true"
-19-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:15:9-35
-20        android:debuggable="true"
-21        android:icon="@drawable/login_logo"
-21-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:16:9-44
-22        android:label="@string/app_name"
-22-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:17:9-41
-23        android:theme="@style/AppTheme" >
-23-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:18:9-40
-24        <activity
-24-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:19:9-25:20
-25            android:name="extrace.ui.main.LoginActivity"
-25-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:19:19-63
-26            android:label="卓越快递" >
-26-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:20:13-33
-27            <intent-filter>
-27-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:21:13-24:29
-28                <action android:name="android.intent.action.MAIN" />
-28-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:17-69
-28-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:25-66
-29
-30                <category android:name="android.intent.category.LAUNCHER" />
-30-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:23:17-77
-30-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:23:27-74
-31            </intent-filter>
-32        </activity>
-33        <activity
-33-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:26:9-32:20
-34            android:name="extrace.ui.main.MainActivity"
-34-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:27:13-56
-35            android:label="@string/app_name" >
-35-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:28:13-45
-36            <intent-filter>
-36-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:29:13-31:29
-37                <action android:name="android.intent.action.MAIN" />
-37-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:17-69
-37-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:25-66
-38            </intent-filter>
-39        </activity>
-40        <activity
-40-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:33:9-39:20
-41            android:name="extrace.ui.misc.CustomerListActivity"
-41-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:34:13-64
-42            android:label="@string/title_activity_customer_list" >
-42-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:35:13-65
-43            <intent-filter>
-43-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:29:13-31:29
-44                <action android:name="android.intent.action.MAIN" />
-44-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:17-69
-44-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:25-66
-45            </intent-filter>
-46        </activity>
-47        <activity
-47-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:40:9-51:20
-48            android:name="extrace.ui.misc.CustomerEditActivity"
-48-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:41:13-64
-49            android:label="@string/title_activity_customer_edit" >
-49-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:42:13-65
-50            <intent-filter>
-50-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:29:13-31:29
-51                <action android:name="android.intent.action.MAIN" />
-51-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:17-69
-51-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:25-66
-52                <!-- category android:name="android.intent.category.LAUNCHER" / -->
-53            </intent-filter>
+12-->D:\extrace\app\src\main\AndroidManifest.xml:8:5-65
+12-->D:\extrace\app\src\main\AndroidManifest.xml:8:22-62
+13    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+13-->D:\extrace\app\src\main\AndroidManifest.xml:9:5-75
+13-->D:\extrace\app\src\main\AndroidManifest.xml:9:22-72
+14    <uses-permission android:name="android.permission.VIBRATE" />
+14-->D:\extrace\app\src\main\AndroidManifest.xml:10:5-66
+14-->D:\extrace\app\src\main\AndroidManifest.xml:10:22-63
+15    <uses-permission android:name="android.permission.FLASHLIGHT" />
+15-->D:\extrace\app\src\main\AndroidManifest.xml:11:5-69
+15-->D:\extrace\app\src\main\AndroidManifest.xml:11:22-66
+16    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 获取网络状态，根据网络状态切换进行数据请求网络转换 -->
+16-->D:\extrace\app\src\main\AndroidManifest.xml:12:5-72
+16-->D:\extrace\app\src\main\AndroidManifest.xml:12:22-69
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 读取外置存储。如果开发者使用了so动态加载功能并且把so文件放在了外置存储区域，则需要申请该权限，否则不需要 -->
+17-->D:\extrace\app\src\main\AndroidManifest.xml:13:5-79
+17-->D:\extrace\app\src\main\AndroidManifest.xml:13:22-76
+18    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 写外置存储。如果开发者使用了离线地图，并且数据写在外置存储区域，则需要申请该权限 -->
+18-->D:\extrace\app\src\main\AndroidManifest.xml:14:5-80
+18-->D:\extrace\app\src\main\AndroidManifest.xml:14:22-77
+19    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 以下是鹰眼SDK基础权限 -->
+19-->D:\extrace\app\src\main\AndroidManifest.xml:15:5-81
+19-->D:\extrace\app\src\main\AndroidManifest.xml:15:22-78
+20    <!-- 这个权限用于进行网络定位 -->
+21    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+21-->D:\extrace\app\src\main\AndroidManifest.xml:17:5-81
+21-->D:\extrace\app\src\main\AndroidManifest.xml:17:22-78
+22    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+22-->D:\extrace\app\src\main\AndroidManifest.xml:18:5-79
+22-->D:\extrace\app\src\main\AndroidManifest.xml:18:22-76
+23    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+23-->D:\extrace\app\src\main\AndroidManifest.xml:19:5-76
+23-->D:\extrace\app\src\main\AndroidManifest.xml:19:22-73
+24    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+24-->D:\extrace\app\src\main\AndroidManifest.xml:13:5-79
+24-->D:\extrace\app\src\main\AndroidManifest.xml:13:22-76
+25    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入对象存储BOS数据 -->
+25-->D:\extrace\app\src\main\AndroidManifest.xml:21:5-76
+25-->D:\extrace\app\src\main\AndroidManifest.xml:21:22-73
+26    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问网络，网络定位需要上网 -->
+26-->D:\extrace\app\src\main\AndroidManifest.xml:15:5-81
+26-->D:\extrace\app\src\main\AndroidManifest.xml:15:22-78
+27    <uses-permission android:name="android.permission.INTERNET" /> <!-- Android O之后开启前台服务需要申请该权限 -->
+27-->D:\extrace\app\src\main\AndroidManifest.xml:7:5-67
+27-->D:\extrace\app\src\main\AndroidManifest.xml:7:22-64
+28    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Android Q之后，后台定位需要申请该权限 -->
+28-->D:\extrace\app\src\main\AndroidManifest.xml:24:5-77
+28-->D:\extrace\app\src\main\AndroidManifest.xml:24:22-74
+29    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- 以下不是鹰眼SDK需要的基础权限，可选 -->
+29-->D:\extrace\app\src\main\AndroidManifest.xml:25:5-85
+29-->D:\extrace\app\src\main\AndroidManifest.xml:25:22-82
+30    <!-- 用于加快GPS首次定位，可选权限，非必须 -->
+31    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于Android M及以上系统，申请加入忽略电池优化白名单，可选权限，非必须 -->
+31-->D:\extrace\app\src\main\AndroidManifest.xml:27:5-89
+31-->D:\extrace\app\src\main\AndroidManifest.xml:27:22-86
+32    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+32-->D:\extrace\app\src\main\AndroidManifest.xml:28:5-95
+32-->D:\extrace\app\src\main\AndroidManifest.xml:28:22-92
+33
+34    <application
+34-->D:\extrace\app\src\main\AndroidManifest.xml:32:5-148:19
+35        android:name="extrace.ui.main.ExTraceApplication"
+35-->D:\extrace\app\src\main\AndroidManifest.xml:33:9-43
+36        android:allowBackup="true"
+36-->D:\extrace\app\src\main\AndroidManifest.xml:34:9-35
+37        android:debuggable="true"
+38        android:icon="@drawable/login_logo"
+38-->D:\extrace\app\src\main\AndroidManifest.xml:35:9-44
+39        android:label="@string/app_name"
+39-->D:\extrace\app\src\main\AndroidManifest.xml:36:9-41
+40        android:testOnly="true"
+41        android:theme="@style/AppTheme" >
+41-->D:\extrace\app\src\main\AndroidManifest.xml:37:9-40
+42        <activity
+42-->D:\extrace\app\src\main\AndroidManifest.xml:38:9-52:20
+43            android:name="extrace.ui.main.WelcomeActivity"
+43-->D:\extrace\app\src\main\AndroidManifest.xml:38:19-50
+44            android:label=" "
+44-->D:\extrace\app\src\main\AndroidManifest.xml:39:21-38
+45            android:resizeableActivity="false"
+45-->D:\extrace\app\src\main\AndroidManifest.xml:40:13-47
+46            android:screenOrientation="portrait"
+46-->D:\extrace\app\src\main\AndroidManifest.xml:41:13-49
+47            android:theme="@style/AppTheme.NoActionBar.NoActionBarLaunch" >
+47-->D:\extrace\app\src\main\AndroidManifest.xml:42:13-74
+48            <meta-data
+48-->D:\extrace\app\src\main\AndroidManifest.xml:43:13-45:39
+49                android:name="android.max_aspect"
+49-->D:\extrace\app\src\main\AndroidManifest.xml:44:17-50
+50                android:value="2.4" />
+50-->D:\extrace\app\src\main\AndroidManifest.xml:45:17-36
+51
+52            <intent-filter>
+52-->D:\extrace\app\src\main\AndroidManifest.xml:47:13-51:29
+53                <action android:name="android.intent.action.MAIN" />
+53-->D:\extrace\app\src\main\AndroidManifest.xml:48:17-69
+53-->D:\extrace\app\src\main\AndroidManifest.xml:48:25-66
 54
-55            <meta-data
-55-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:48:13-50:72
-56                android:name="android.support.PARENT_ACTIVITY"
-56-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:49:17-63
-57                android:value="extrace.ui.misc.CustomerListActivity" />
-57-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:50:17-69
-58        </activity>
-59        <activity
-59-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:52:9-59:20
-60            android:name="extrace.ui.misc.RegionListActivity"
-60-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:53:13-62
-61            android:label="@string/title_activity_region_list" >
-61-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:54:13-63
-62            <intent-filter>
-62-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:29:13-31:29
-63                <action android:name="android.intent.action.MAIN" />
-63-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:17-69
-63-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:25-66
-64                <!-- category android:name="android.intent.category.LAUNCHER" / -->
-65            </intent-filter>
-66        </activity>
+55                <category android:name="android.intent.category.LAUNCHER" />
+55-->D:\extrace\app\src\main\AndroidManifest.xml:50:17-77
+55-->D:\extrace\app\src\main\AndroidManifest.xml:50:27-74
+56            </intent-filter>
+57        </activity>
+58        <activity android:name="extrace.ui.domain.ExpressQueryActivity" />
+58-->D:\extrace\app\src\main\AndroidManifest.xml:53:9-75
+58-->D:\extrace\app\src\main\AndroidManifest.xml:53:19-72
+59        <activity android:name="extrace.ui.domain.ExpressDispatchActivity" />
+59-->D:\extrace\app\src\main\AndroidManifest.xml:54:9-78
+59-->D:\extrace\app\src\main\AndroidManifest.xml:54:19-75
+60
+61        <meta-data
+61-->D:\extrace\app\src\main\AndroidManifest.xml:56:9-58:64
+62            android:name="com.baidu.lbsapi.API_KEY"
+62-->D:\extrace\app\src\main\AndroidManifest.xml:57:13-52
+63            android:value="YLaZHXUbMbRnGL6d7xsKmuzACLVUeeQj" />
+63-->D:\extrace\app\src\main\AndroidManifest.xml:58:13-61
+64
+65        <activity android:name="extrace.ui.domain.ExpressReciveActivity" />
+65-->D:\extrace\app\src\main\AndroidManifest.xml:60:9-76
+65-->D:\extrace\app\src\main\AndroidManifest.xml:60:19-73
+66        <activity android:name="extrace.ui.domain.ExpressDeliveActivity" />
+66-->D:\extrace\app\src\main\AndroidManifest.xml:61:9-76
+66-->D:\extrace\app\src\main\AndroidManifest.xml:61:19-73
 67        <activity
-67-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:60:9-67:20
-68            android:name="zxing.util.CaptureActivity"
-68-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:61:13-54
-69            android:label="@string/app_name"
-69-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:62:13-45
-70            android:screenOrientation="portrait" >
-70-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:63:13-49
-71            <intent-filter>
-71-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:29:13-31:29
-72                <action android:name="android.intent.action.MAIN" />
-72-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:17-69
-72-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:22:25-66
-73            </intent-filter>
-74        </activity>
-75        <activity
-75-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:68:9-71:20
-76            android:name="extrace.ui.domain.ExpressEditActivity"
-76-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:69:13-65
-77            android:label="@string/title_activity_express_edit" >
-77-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:70:13-64
-78        </activity>
-79        <activity
-79-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:72:9-75:20
-80            android:name="extrace.ui.domain.StartExpressActivity"
-80-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:73:13-66
-81            android:label="@string/title_activity_create_express_sheet" >
-81-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:74:13-72
-82        </activity>
-83        <activity
-83-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:76:9-79:20
-84            android:name="extrace.ui.main.SettingsActivity"
-84-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:77:13-60
-85            android:label="@string/title_activity_settings" >
-85-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:78:13-60
-86        </activity>
-87        <activity
-87-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:80:9-83:20
-88            android:name="extrace.ui.main.RegisterActivity"
-88-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:81:13-60
-89            android:label="注册" >
-89-->E:\ExtraceIm3\app\src\main\AndroidManifest.xml:82:13-31
-90        </activity>
-91
-92        <meta-data
-92-->[com.android.support:appcompat-v7:26.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\264625113874c2fcd52cbd610de3bd50\appcompat-v7-26.1.0\AndroidManifest.xml:26:9-28:38
-93            android:name="android.support.VERSION"
-93-->[com.android.support:appcompat-v7:26.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\264625113874c2fcd52cbd610de3bd50\appcompat-v7-26.1.0\AndroidManifest.xml:27:13-51
-94            android:value="26.1.0" />
-94-->[com.android.support:appcompat-v7:26.1.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\264625113874c2fcd52cbd610de3bd50\appcompat-v7-26.1.0\AndroidManifest.xml:28:13-35
-95        <meta-data
-95-->[android.arch.lifecycle:runtime:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\2a5b516aa4ba3c14684f0383faa3347e\runtime-1.0.0\AndroidManifest.xml:25:9-27:47
-96            android:name="android.arch.lifecycle.VERSION"
-96-->[android.arch.lifecycle:runtime:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\2a5b516aa4ba3c14684f0383faa3347e\runtime-1.0.0\AndroidManifest.xml:26:13-58
-97            android:value="27.0.0-SNAPSHOT" />
-97-->[android.arch.lifecycle:runtime:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-2\files-2.1\2a5b516aa4ba3c14684f0383faa3347e\runtime-1.0.0\AndroidManifest.xml:27:13-44
-98    </application>
-99
-100</manifest>
+67-->D:\extrace\app\src\main\AndroidManifest.xml:62:9-66:20
+68            android:name="extrace.ui.main.LoginActivity"
+68-->D:\extrace\app\src\main\AndroidManifest.xml:63:13-42
+69            android:label="卓越快递" >
+69-->D:\extrace\app\src\main\AndroidManifest.xml:64:13-33
+70        </activity>
+71        <activity
+71-->D:\extrace\app\src\main\AndroidManifest.xml:67:9-73:20
+72            android:name="extrace.ui.main.MainActivity"
+72-->D:\extrace\app\src\main\AndroidManifest.xml:68:13-41
+73            android:label="@string/app_name" >
+73-->D:\extrace\app\src\main\AndroidManifest.xml:69:13-45
+74            <intent-filter>
+74-->D:\extrace\app\src\main\AndroidManifest.xml:70:13-72:29
+75                <action android:name="android.intent.action.MAIN" />
+75-->D:\extrace\app\src\main\AndroidManifest.xml:48:17-69
+75-->D:\extrace\app\src\main\AndroidManifest.xml:48:25-66
+76            </intent-filter>
+77        </activity>
+78        <activity
+78-->D:\extrace\app\src\main\AndroidManifest.xml:74:9-80:20
+79            android:name="extrace.ui.misc.CustomerListActivity"
+79-->D:\extrace\app\src\main\AndroidManifest.xml:75:13-64
+80            android:label="@string/title_activity_customer_list" >
+80-->D:\extrace\app\src\main\AndroidManifest.xml:76:13-65
+81            <intent-filter>
+81-->D:\extrace\app\src\main\AndroidManifest.xml:70:13-72:29
+82                <action android:name="android.intent.action.MAIN" />
+82-->D:\extrace\app\src\main\AndroidManifest.xml:48:17-69
+82-->D:\extrace\app\src\main\AndroidManifest.xml:48:25-66
+83            </intent-filter>
+84        </activity>
+85        <activity
+85-->D:\extrace\app\src\main\AndroidManifest.xml:81:9-92:20
+86            android:name="extrace.ui.misc.CustomerEditActivity"
+86-->D:\extrace\app\src\main\AndroidManifest.xml:82:13-64
+87            android:label="@string/title_activity_customer_edit" >
+87-->D:\extrace\app\src\main\AndroidManifest.xml:83:13-65
+88            <intent-filter>
+88-->D:\extrace\app\src\main\AndroidManifest.xml:70:13-72:29
+89                <action android:name="android.intent.action.MAIN" />
+89-->D:\extrace\app\src\main\AndroidManifest.xml:48:17-69
+89-->D:\extrace\app\src\main\AndroidManifest.xml:48:25-66
+90                <!-- category android:name="android.intent.category.LAUNCHER" / -->
+91            </intent-filter>
+92
+93            <meta-data
+93-->D:\extrace\app\src\main\AndroidManifest.xml:89:13-91:72
+94                android:name="android.support.PARENT_ACTIVITY"
+94-->D:\extrace\app\src\main\AndroidManifest.xml:90:17-63
+95                android:value="extrace.ui.misc.CustomerListActivity" />
+95-->D:\extrace\app\src\main\AndroidManifest.xml:91:17-69
+96        </activity>
+97        <activity
+97-->D:\extrace\app\src\main\AndroidManifest.xml:93:9-100:20
+98            android:name="extrace.ui.misc.RegionListActivity"
+98-->D:\extrace\app\src\main\AndroidManifest.xml:94:13-62
+99            android:label="@string/title_activity_region_list" >
+99-->D:\extrace\app\src\main\AndroidManifest.xml:95:13-63
+100            <intent-filter>
+100-->D:\extrace\app\src\main\AndroidManifest.xml:70:13-72:29
+101                <action android:name="android.intent.action.MAIN" />
+101-->D:\extrace\app\src\main\AndroidManifest.xml:48:17-69
+101-->D:\extrace\app\src\main\AndroidManifest.xml:48:25-66
+102                <!-- category android:name="android.intent.category.LAUNCHER" / -->
+103            </intent-filter>
+104        </activity>
+105        <activity
+105-->D:\extrace\app\src\main\AndroidManifest.xml:101:9-108:20
+106            android:name="zxing.util.CaptureActivity"
+106-->D:\extrace\app\src\main\AndroidManifest.xml:102:13-54
+107            android:label="@string/app_name"
+107-->D:\extrace\app\src\main\AndroidManifest.xml:103:13-45
+108            android:screenOrientation="portrait" >
+108-->D:\extrace\app\src\main\AndroidManifest.xml:104:13-49
+109            <intent-filter>
+109-->D:\extrace\app\src\main\AndroidManifest.xml:70:13-72:29
+110                <action android:name="android.intent.action.MAIN" />
+110-->D:\extrace\app\src\main\AndroidManifest.xml:48:17-69
+110-->D:\extrace\app\src\main\AndroidManifest.xml:48:25-66
+111            </intent-filter>
+112        </activity>
+113        <activity
+113-->D:\extrace\app\src\main\AndroidManifest.xml:109:9-111:67
+114            android:name="extrace.ui.domain.ExpressEditActivity"
+114-->D:\extrace\app\src\main\AndroidManifest.xml:110:13-65
+115            android:label="@string/title_activity_express_edit" />
+115-->D:\extrace\app\src\main\AndroidManifest.xml:111:13-64
+116        <activity
+116-->D:\extrace\app\src\main\AndroidManifest.xml:112:9-114:75
+117            android:name="extrace.ui.domain.StartExpressActivity"
+117-->D:\extrace\app\src\main\AndroidManifest.xml:113:13-66
+118            android:label="@string/title_activity_create_express_sheet" />
+118-->D:\extrace\app\src\main\AndroidManifest.xml:114:13-72
+119        <activity
+119-->D:\extrace\app\src\main\AndroidManifest.xml:115:9-117:63
+120            android:name="extrace.ui.main.SettingsActivity"
+120-->D:\extrace\app\src\main\AndroidManifest.xml:116:13-45
+121            android:label="@string/title_activity_settings" />
+121-->D:\extrace\app\src\main\AndroidManifest.xml:117:13-60
+122        <activity
+122-->D:\extrace\app\src\main\AndroidManifest.xml:118:9-120:34
+123            android:name="extrace.ui.main.RegisterActivity"
+123-->D:\extrace\app\src\main\AndroidManifest.xml:119:13-45
+124            android:label="注册" />
+124-->D:\extrace\app\src\main\AndroidManifest.xml:120:13-31
+125        <activity
+125-->D:\extrace\app\src\main\AndroidManifest.xml:121:9-123:34
+126            android:name="extrace.ui.misc.MapActivity"
+126-->D:\extrace\app\src\main\AndroidManifest.xml:122:13-55
+127            android:label="地图" />
+127-->D:\extrace\app\src\main\AndroidManifest.xml:123:13-31
+128        <activity
+128-->D:\extrace\app\src\main\AndroidManifest.xml:124:9-126:36
+129            android:name="extrace.ui.misc.ChaiBaoActivity"
+129-->D:\extrace\app\src\main\AndroidManifest.xml:125:13-59
+130            android:label="包裹拆包" />
+130-->D:\extrace\app\src\main\AndroidManifest.xml:126:13-33
+131        <activity
+131-->D:\extrace\app\src\main\AndroidManifest.xml:127:9-129:36
+132            android:name="extrace.ui.misc.DaBaoActivity"
+132-->D:\extrace\app\src\main\AndroidManifest.xml:128:13-57
+133            android:label="包裹打包" />
+133-->D:\extrace\app\src\main\AndroidManifest.xml:129:13-33
+134        <activity
+134-->D:\extrace\app\src\main\AndroidManifest.xml:130:9-132:36
+135            android:name="extrace.ui.misc.ZhuanYunActivity"
+135-->D:\extrace\app\src\main\AndroidManifest.xml:131:13-60
+136            android:label="快递转运" />
+136-->D:\extrace\app\src\main\AndroidManifest.xml:132:13-33
+137        <activity
+137-->D:\extrace\app\src\main\AndroidManifest.xml:133:9-135:38
+138            android:name="extrace.ui.misc.NodeListActivity"
+138-->D:\extrace\app\src\main\AndroidManifest.xml:134:13-60
+139            android:label="快递结点查询" />
+139-->D:\extrace\app\src\main\AndroidManifest.xml:135:13-35
+140        <activity
+140-->D:\extrace\app\src\main\AndroidManifest.xml:136:9-138:36
+141            android:name="extrace.ui.misc.NewPackageActivity"
+141-->D:\extrace\app\src\main\AndroidManifest.xml:137:13-62
+142            android:label="新建包裹" />
+142-->D:\extrace\app\src\main\AndroidManifest.xml:138:13-33
+143
+144        <service
+144-->D:\extrace\app\src\main\AndroidManifest.xml:140:9-143:41
+145            android:name="com.baidu.trace.LBSTraceService"
+145-->D:\extrace\app\src\main\AndroidManifest.xml:141:13-59
+146            android:enabled="true"
+146-->D:\extrace\app\src\main\AndroidManifest.xml:142:13-35
+147            android:process=":remote" />
+147-->D:\extrace\app\src\main\AndroidManifest.xml:143:13-38
+148        <service
+148-->D:\extrace\app\src\main\AndroidManifest.xml:144:9-147:39
+149            android:name="extrace.ui.domain.MyService"
+149-->D:\extrace\app\src\main\AndroidManifest.xml:145:13-55
+150            android:enabled="true"
+150-->D:\extrace\app\src\main\AndroidManifest.xml:146:13-35
+151            android:exported="true" />
+151-->D:\extrace\app\src\main\AndroidManifest.xml:147:13-36
+152
+153        <meta-data
+153-->[com.android.support:appcompat-v7:26.1.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\e0769e30a526054eecf0e15b46be5f58\appcompat-v7-26.1.0\AndroidManifest.xml:26:9-28:38
+154            android:name="android.support.VERSION"
+154-->[com.android.support:appcompat-v7:26.1.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\e0769e30a526054eecf0e15b46be5f58\appcompat-v7-26.1.0\AndroidManifest.xml:27:13-51
+155            android:value="26.1.0" />
+155-->[com.android.support:appcompat-v7:26.1.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\e0769e30a526054eecf0e15b46be5f58\appcompat-v7-26.1.0\AndroidManifest.xml:28:13-35
+156        <meta-data
+156-->[android.arch.lifecycle:runtime:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\26e2a62291ffac05e2a02cf7e6b68ba6\runtime-1.0.0\AndroidManifest.xml:25:9-27:47
+157            android:name="android.arch.lifecycle.VERSION"
+157-->[android.arch.lifecycle:runtime:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\26e2a62291ffac05e2a02cf7e6b68ba6\runtime-1.0.0\AndroidManifest.xml:26:13-58
+158            android:value="27.0.0-SNAPSHOT" />
+158-->[android.arch.lifecycle:runtime:1.0.0] C:\Users\asus\.gradle\caches\transforms-2\files-2.1\26e2a62291ffac05e2a02cf7e6b68ba6\runtime-1.0.0\AndroidManifest.xml:27:13-44
+159    </application>
+160
+161</manifest>

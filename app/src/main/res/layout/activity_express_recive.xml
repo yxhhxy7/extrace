@@ -1,314 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
     android:orientation="vertical"
-    tools:context="extrace.ui.domain.ExpressEditActivity$ExpressEditFragment1" >
+    tools:context="extrace.ui.domain.ExpressEditActivity$ExpressEditFragment1">
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingLeft="15dip"
-        android:paddingTop="8dip"
-        android:paddingRight="15dip">
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:divider="@drawable/edittext_bk"
+        android:background="@drawable/edittext_bk">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip"
-            android:paddingTop="4dip"
-            android:paddingBottom="4dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="6dp"
-                android:gravity="center"
-                android:text="运单:"
-                android:textColor="@color/black"
-                android:textSize="16dip" />
-
-            <TextView
-                android:id="@+id/expressId"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="20dip" />
-
-
-        </LinearLayout>
-
+            android:paddingLeft="5dp"
+            android:src="@drawable/express"
+            android:layout_gravity="center"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip"
-            android:paddingTop="30dip"
-            android:paddingBottom="4dip">
+            android:orientation="vertical">
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:gravity="center"
-                android:text="发件人:"
-                android:textColor="@color/black"
-                android:textSize="16dip" />
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
 
-            <TextView
-                android:id="@+id/expressSndName"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textSize="16dip"
-                android:textStyle="bold"
-                android:background="@null"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运单:"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/expressId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="50dp"
+                    android:textSize="20dp"
+                    android:textColor="#03070E" />
+
+
+
+            </LinearLayout>
+
+
 
 
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip"
-            android:paddingTop="8dip"
-            android:paddingBottom="4dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="6dp"
-                android:gravity="center"
-                android:text="电话号码:"
-                android:textColor="@color/black"
-                android:textSize="16dip" />
-
-            <TextView
-                android:id="@+id/expressSndTel"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:textColor="@color/black"
-                android:textSize="16dip"
-                android:textStyle="bold"
-                android:inputType="number"
-                android:background="@null"/>
-
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip"
-            android:paddingTop="8dip"
-            android:paddingBottom="4dip">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="6dp"
-                android:gravity="center"
-                android:text="详细住址:"
-                android:textColor="@color/black"
-                android:textSize="16dip"  />
-
-            <TextView
-                android:id="@+id/SndExpressDept"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:gravity="left"
-                android:textColor="@color/black"
-                android:textSize="16dip"
-                android:textStyle="bold"
-                android:inputType="number"
-                android:background="@null" />
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingTop="40dip"
-            android:paddingLeft="5dip"
-            >
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="快件类型:"
-                android:textColor="#000000"
-                android:textSize="16dip" />
-
-            <EditText
-                android:id="@+id/ExpressSheetType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:ems="10"
-                android:inputType="textPersonName"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/line2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line1"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip"
-            android:paddingTop="3px">
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="重量(千克)："
-                android:textColor="#000000"
-                android:textSize="16dip" />
-
-            <EditText
-                android:id="@+id/ExpressSheetWeught"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:ems="10"
-                android:inputType="numberDecimal" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/line3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line2"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip">
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="快递费用(元)："
-                android:textColor="#000000"
-                android:textSize="16dip" />
-
-            <EditText
-                android:id="@+id/ExpressSheetTransFee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/line4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/line3"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip">
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="保险金(元)："
-                android:textColor="#000000"
-                android:textSize="16dip" />
-
-            <EditText
-                android:id="@+id/ExpressSheetIsuFee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip"
-            android:paddingTop="30dip"
-            android:paddingBottom="4dip">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="6dp"
-                android:gravity="center"
-                android:text="收件时间:"
-                android:textColor="@color/black"
-                android:textSize="16dip" />
-
-            <TextView
-                android:id="@+id/expressAccTime"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="8dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:textSize="20dip" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="5dip"
-            android:paddingTop="40dip"
-            android:paddingBottom="4dip">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="6dp"
-                android:gravity="center"
-                android:text="状态:"
-                android:textColor="@color/black"
-                android:textSize="16dip"  />
-
-            <TextView
-                android:id="@+id/ExpressSheetStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:text="正在揽收"
-                android:textSize="19sp" />
-        </LinearLayout>
-
-
-
-
 
 
 
@@ -319,31 +70,356 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:divider="@drawable/edittext_bk"
+        android:background="@drawable/edittext_bk">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:src="@drawable/user"
+            android:layout_gravity="center"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="5dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发件人:"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/expressSndName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:textSize="20dp"
+                    android:textColor="#03070E"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="电话号码:"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/expressSndTel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:textSize="20dp"
+                    android:textColor="#03070E"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="详细住址:"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/SndExpressDept"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:textSize="20dp"
+                    android:textColor="#03070E"/>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingTop="5dp"
+
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:divider="@drawable/edittext_bk"
+        android:background="@drawable/edittext_bk">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:src="@drawable/message"
+            android:layout_gravity="center"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="快件类型:"
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/ExpressSheetType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:ems="10"
+                    android:textColor="#03070E"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="重量(千克)："
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/ExpressSheetWeught"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:ems="10"
+                    android:textColor="#03070E"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="快递费用(元)："
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/ExpressSheetTransFee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:ems="10"
+                    android:textColor="#03070E"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="保险金(元)："
+                    android:textSize="20dp"/>
+                <EditText
+                    android:id="@+id/ExpressSheetIsuFee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:ems="10"
+                    android:textColor="#03070E"/>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:divider="@drawable/edittext_bk"
+        android:background="@drawable/edittext_bk">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:src="@drawable/receivetime"
+            android:layout_gravity="center"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收件时间:"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/expressAccTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="30dp"
+                    android:textSize="20dp"
+                    android:textColor="#03070E"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:divider="@drawable/edittext_bk"
+        android:background="@drawable/edittext_bk">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:src="@drawable/st"
+            android:layout_gravity="center"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="状态:"
+                    android:textSize="20dp"/>
+                <TextView
+                    android:id="@+id/ExpressSheetStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="100dp"
+                    android:text="正在揽收"
+                    android:textSize="20dp"
+                    android:textColor="#03070E"
+                    android:gravity="center"/>
+
+
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:padding="4dp"
         android:visibility="visible"
         tools:visibility="visible">
-<!--
-        <Button
-            android:id="@+id/btnCommit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn1"
-            android:text="提交"
-            android:textColor="#FFFFFF"
-            tools:visibility="visible" />
 
-        <Button
-            android:id="@+id/btnDelivry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginRight="3dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_btn1"
-            android:text="交付"
-            android:textColor="#FFFFFF"/>
-    -->
 
         <Button
             android:id="@+id/btnReceive"
@@ -352,7 +428,11 @@
             android:layout_weight="1"
             android:background="@drawable/bg_btn1"
             android:text="完成揽收"
-            android:textColor="#FFFFFF"/>
-    </LinearLayout>
+            android:textColor="#FFFFFF"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
+
+
+
 
 </LinearLayout>

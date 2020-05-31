@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+  apply plugin: 'com.android.application'
 apply plugin: 'com.mob.sdk'
 
 android {
@@ -11,7 +11,7 @@ android {
         }
     }
     compileSdkVersion 26
-    buildToolsVersion "29.0.2"
+    buildToolsVersion '29.0.2'
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "extrace.ui.main"
@@ -38,7 +38,9 @@ MobSDK {
 }
 
 dependencies {
+    //noinspection GradleCompatible
     implementation 'com.android.support:support-v4:26.1.0'
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.nepxion:zxing:1.0.12'
@@ -48,5 +50,14 @@ dependencies {
     implementation files('libs/okhttp-3.8.1.jar')
     implementation files('libs/okio-1.13.0.jar')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
 }
+
+
+
+
+
+
+
+
 

@@ -456,8 +456,9 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 
 			mStatusView =  (TextView) rootView.findViewById(R.id.expressStatus);
 			
-			mbtnCapture = (ImageView) rootView.findViewById(R.id.action_ex_capture_icon);
+			//mbtnCapture = (ImageView) rootView.findViewById(R.id.action_ex_capture_icon);
 			//mbtnDelive=rootView.findViewById(R.id.btnDelivry);
+			/*
 			mbtnCapture.setOnClickListener(
 					new View.OnClickListener() {
 						@Override
@@ -465,7 +466,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 							((ExpressEditActivity) getActivity()).StartCapture();
 						}
 					});
-			/*
+
 			mbtnRcv = (ImageView) rootView.findViewById(R.id.action_ex_rcv_icon);
 			mbtnRcv.setOnClickListener(
 					new View.OnClickListener() {
@@ -484,6 +485,7 @@ public class ExpressEditActivity extends AppCompatActivity implements ActionBar.
 					});
 
 			 */
+
 			/*
 			mbtnDelive.setOnClickListener(new View.OnClickListener() {
 
